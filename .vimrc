@@ -5,6 +5,8 @@ set nocompatible
 filetype off
 
 " TODO: Load plugins here (pathogen or vundle)
+execute pathogen#infect()
+map <C-o> :NERDTreeToggle<CR>
 
 " Turn on syntax highlighting
 syntax on
