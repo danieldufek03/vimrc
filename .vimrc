@@ -98,4 +98,11 @@ set listchars=tab:▸\ ,eol:¬
 map <leader>l :set list!<CR> " Toggle tabs and EOL
 
 " Color scheme (terminal)
-colo murphy
+colo material-monokai
+
+" Start NERDTree when Vim is started without file arguments.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+
+let g:airline#extensions#ale#enabled = 1
+let g:nerdtree_tabs_open_on_console_startup=1
