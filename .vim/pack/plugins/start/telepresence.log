@@ -1,0 +1,959 @@
+   0.0 TEL | Telepresence 0.109 launched at Tue Mar  9 16:41:52 2021
+   0.0 TEL |   /usr/bin/telepresence --also-proxy 0.0.0.0/0
+   0.0 TEL | uname: uname_result(system='Linux', node='danimal-Precision-5520', release='5.4.0-66-generic', version='#74~18.04.2-Ubuntu SMP Fri Feb 5 11:17:31 UTC 2021', machine='x86_64', processor='x86_64')
+   0.0 TEL | Platform: linux
+   0.0 TEL | WSL: False
+   0.0 TEL | Python 3.6.9 (default, Jan 26 2021, 15:33:00)
+   0.0 TEL | [GCC 8.4.0]
+   0.0 TEL | BEGIN SPAN main.py:40(main)
+   0.0 TEL | BEGIN SPAN startup.py:83(set_kube_command)
+   0.0 TEL | Found kubectl -> /usr/local/bin/kubectl
+   0.0 TEL | [1] Capturing: kubectl config current-context
+   0.0 TEL | [1] captured in 0.04 secs.
+   0.0 TEL | [2] Capturing: kubectl --context development.atmimp.com version --short
+   0.3 TEL | [2] captured in 0.26 secs.
+   0.3 TEL | [3] Capturing: kubectl --context development.atmimp.com config view -o json
+   0.4 TEL | [3] captured in 0.07 secs.
+   0.4 TEL | [4] Capturing: kubectl --context development.atmimp.com api-versions
+   0.7 TEL | [4] captured in 0.30 secs.
+   0.7 TEL | Command: kubectl 1.18.15
+   0.7 TEL | Context: development.atmimp.com, namespace: default, version: 1.18.15
+   0.7 TEL | END SPAN startup.py:83(set_kube_command)    0.7s
+   0.7 >>> | Using a Pod instead of a Deployment for the Telepresence proxy. If you experience problems, please file an issue!
+   0.7 >>> | Set the environment variable TELEPRESENCE_USE_DEPLOYMENT to any non-empty value to force the old behavior, e.g.,
+   0.7 >>> |     env TELEPRESENCE_USE_DEPLOYMENT=1 telepresence --run curl hello
+   0.7 >>> | 
+   0.7 TEL | Found ssh -> /usr/bin/ssh
+   0.7 TEL | [5] Capturing: ssh -V
+   0.7 TEL | [5] captured in 0.01 secs.
+   0.7 TEL | Found bash -> /bin/bash
+   0.7 TEL | Found sshuttle-telepresence -> /usr/libexec/sshuttle-telepresence
+   0.7 TEL | Found conntrack -> /usr/sbin/conntrack
+   0.7 TEL | Found iptables -> /sbin/iptables
+   0.7 TEL | Found sudo -> /usr/bin/sudo
+   0.7 TEL | [6] Running: sudo -n echo -n
+   0.7   6 | sudo: a password is required
+   0.7 TEL | [6] exit 1 in 0.03 secs.
+   0.7 >>> | How Telepresence uses sudo: https://www.telepresence.io/reference/install#dependencies
+   0.7 >>> | Invoking sudo. Please enter your sudo password.
+   0.7 TEL | [7] Running: sudo echo -n
+   2.6 TEL | [7] ran in 1.90 secs.
+   2.6 TEL | [8] Capturing: sudo iptables --list --numeric
+   2.6 TEL | [8] captured in 0.02 secs.
+   2.6 >>> | Starting proxy with method 'vpn-tcp', which has the following limitations: All processes are affected, only one telepresence can run per machine, and you can't use other VPNs. You may need to add cloud hosts and headless services with --also-proxy. For a full list of method limitations see https://telepresence.io/reference/methods.html
+   2.6 TEL | Found sshfs -> /usr/bin/sshfs
+   2.6 TEL | Found fusermount -> /bin/fusermount
+   2.6 >>> | Volumes are rooted at $TELEPRESENCE_ROOT. See https://telepresence.io/howto/volumes.html for details.
+   2.6 TEL | [9] Running: kubectl --context development.atmimp.com --namespace default get pods telepresence-connectivity-check --ignore-not-found
+   3.4 TEL | [9] ran in 0.73 secs.
+   4.6 TEL | Scout info: {'latest_version': '0.109', 'application': 'telepresence', 'notices': []}
+   4.6 >>> | Starting network proxy to cluster using new Pod telepresence-1615326112-6445906-23897
+   4.6 TEL | [10] Running: kubectl --context development.atmimp.com --namespace default create -f -
+   5.1  10 | pod/telepresence-1615326112-6445906-23897 created
+   5.1 TEL | [10] ran in 0.55 secs.
+   5.1 TEL | BEGIN SPAN remote.py:109(wait_for_pod)
+   5.1 TEL | [11] Running: kubectl --context development.atmimp.com --namespace default wait --for=condition=ready --timeout=60s pod/telepresence-1615326112-6445906-23897
+   9.2  11 | pod/telepresence-1615326112-6445906-23897 condition met
+   9.2 TEL | [11] ran in 4.06 secs.
+   9.2 TEL | [12] Capturing: kubectl --context development.atmimp.com --namespace default get pod telepresence-1615326112-6445906-23897 -o json
+   9.5 TEL | [12] captured in 0.31 secs.
+   9.5 TEL | END SPAN remote.py:109(wait_for_pod)    4.4s
+   9.5 TEL | BEGIN SPAN connect.py:37(connect)
+   9.5 TEL | [13] Launching kubectl logs: kubectl --context development.atmimp.com --namespace default logs -f telepresence-1615326112-6445906-23897 --container telepresence --tail=10
+   9.5 TEL | [14] Launching kubectl port-forward: kubectl --context development.atmimp.com --namespace default port-forward telepresence-1615326112-6445906-23897 36729:8022
+   9.5 TEL | [15] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5 -q -p 36729 telepresence@127.0.0.1 /bin/true
+   9.5 TEL | [15] exit 255 in 0.02 secs.
+   9.8 TEL | [16] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5 -q -p 36729 telepresence@127.0.0.1 /bin/true
+   9.8 TEL | [16] exit 255 in 0.02 secs.
+   9.9  13 | 2021-03-09T21:42:01+0000 [-] Loading ./forwarder.py...
+   9.9  13 | 2021-03-09T21:42:01+0000 [-] /etc/resolv.conf changed, reparsing
+   9.9  13 | 2021-03-09T21:42:01+0000 [-] Resolver added ('100.64.0.10', 53) to server list
+   9.9  13 | 2021-03-09T21:42:01+0000 [-] SOCKSv5Factory starting on 9050
+   9.9  13 | 2021-03-09T21:42:01+0000 [socks.SOCKSv5Factory#info] Starting factory <socks.SOCKSv5Factory object at 0x7fec643e2278>
+   9.9  13 | 2021-03-09T21:42:01+0000 [-] DNSDatagramProtocol starting on 9053
+   9.9  13 | 2021-03-09T21:42:01+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7fec643e2550>
+   9.9  13 | 2021-03-09T21:42:01+0000 [-] Loaded.
+   9.9  13 | 2021-03-09T21:42:01+0000 [twisted.scripts._twistd_unix.UnixAppLogger#info] twistd 20.3.0 (/usr/bin/python3.6 3.6.8) starting up.
+   9.9  13 | 2021-03-09T21:42:01+0000 [twisted.scripts._twistd_unix.UnixAppLogger#info] reactor class: twisted.internet.epollreactor.EPollReactor.
+  10.1 TEL | [17] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5 -q -p 36729 telepresence@127.0.0.1 /bin/true
+  10.1  14 | Forwarding from 127.0.0.1:36729 -> 8022
+  10.1  14 | Forwarding from [::1]:36729 -> 8022
+  10.1  14 | Handling connection for 36729
+  10.5 TEL | [17] ran in 0.47 secs.
+  10.5 >>> | 
+  10.5 >>> | No traffic is being forwarded from the remote Deployment to your local machine. You can use the --expose option to specify which ports you want to forward.
+  10.5 >>> | 
+  10.5 TEL | Launching Web server for proxy poll
+  10.5 TEL | [18] Launching SSH port forward (socks and proxy poll): ssh -N -oServerAliveInterval=1 -oServerAliveCountMax=10 -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5 -q -p 36729 telepresence@127.0.0.1 -L127.0.0.1:43739:127.0.0.1:9050 -R9055:127.0.0.1:33157
+  10.5 TEL | END SPAN connect.py:37(connect)    1.0s
+  10.5 TEL | BEGIN SPAN remote_env.py:29(get_remote_env)
+  10.5 TEL | [19] Capturing: kubectl --context development.atmimp.com --namespace default exec telepresence-1615326112-6445906-23897 --container telepresence -- python3 podinfo.py
+  10.6  14 | Handling connection for 36729
+  11.4 TEL | [19] captured in 0.86 secs.
+  11.4 TEL | END SPAN remote_env.py:29(get_remote_env)    0.9s
+  11.4 TEL | BEGIN SPAN mount.py:30(mount_remote_volumes)
+  11.4 TEL | [20] Running: sshfs -p 36729 -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5 telepresence@127.0.0.1:/ /tmp/tel-gmw8p6t2/fs
+  11.5  14 | Handling connection for 36729
+  12.0 TEL | [20] ran in 0.56 secs.
+  12.0 TEL | END SPAN mount.py:30(mount_remote_volumes)    0.6s
+  12.0 TEL | BEGIN SPAN vpn.py:62(connect_sshuttle)
+  12.0 TEL | BEGIN SPAN cidr.py:113(get_proxy_cidrs)
+  12.0 TEL | [21] Capturing: kubectl --context development.atmimp.com --namespace default get nodes -o json
+  12.4 TEL | [21] captured in 0.46 secs.
+  12.4 TEL | [22] Capturing: kubectl --context development.atmimp.com --namespace default get pods -n kube-system -o json
+  12.9 TEL | [22] captured in 0.45 secs.
+  12.9 TEL | [23] Capturing: kubectl --context development.atmimp.com --namespace default get services -o json
+  13.4 TEL | [23] captured in 0.49 secs.
+  13.4 >>> | Guessing that Services IP range is ['100.64.0.0/13']. Services started after this point will be inaccessible if are outside this range; restart telepresence if you can't access a new Service.
+  13.4 TEL | END SPAN cidr.py:113(get_proxy_cidrs)    1.4s
+  13.4 TEL | [24] Launching sshuttle: sshuttle-telepresence -v --dns --method nat -e 'ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5' -r telepresence@127.0.0.1:36729 --to-ns 127.0.0.1:9053 0.0.0.0/0 100.96.9.0/24 100.96.6.0/24 100.96.8.0/24 100.96.3.0/24 100.96.4.0/24 100.96.7.0/24 100.64.0.0/13 100.96.2.0/24
+  13.4 TEL | BEGIN SPAN vpn.py:85(connect_sshuttle,sshuttle-wait)
+  13.4 TEL | Wait for vpn-tcp connection: hellotelepresence-0
+  13.4 TEL | [25] Capturing: python3 -c 'import socket; socket.gethostbyname("hellotelepresence-0")'
+  13.7 TEL | [25] exit 1 in 0.27 secs.
+  13.7 TEL | [26] Capturing: python3 -c 'import socket; socket.gethostbyname("hellotelepresence-0.a.sanity.check.telepresence.io")'
+  14.0  24 | Starting sshuttle proxy.
+  14.1 TEL | [26] exit 1 in 0.42 secs.
+  14.2 TEL | Wait for vpn-tcp connection: hellotelepresence-1
+  14.2 TEL | [27] Capturing: python3 -c 'import socket; socket.gethostbyname("hellotelepresence-1")'
+  14.4 TEL | [27] exit 1 in 0.22 secs.
+  14.4 TEL | [28] Capturing: python3 -c 'import socket; socket.gethostbyname("hellotelepresence-1.a.sanity.check.telepresence.io")'
+  14.9  24 | firewall manager: Starting firewall with Python version 3.6.9
+  14.9  24 | firewall manager: ready method name nat.
+  14.9  24 | IPv6 enabled: False
+  14.9  24 | UDP enabled: False
+  14.9  24 | DNS enabled: True
+  14.9  24 | TCP redirector listening on ('127.0.0.1', 12300).
+  14.9  24 | DNS listening on ('127.0.0.1', 12300).
+  14.9  24 | Starting client with Python version 3.6.9
+  14.9  24 | c : connecting to server...
+  14.9  14 | Handling connection for 36729
+  15.0 TEL | [28] exit 1 in 0.62 secs.
+  15.1  24 | Warning: Permanently added '[127.0.0.1]:36729' (ECDSA) to the list of known hosts.
+  15.1 TEL | Wait for vpn-tcp connection: hellotelepresence-2
+  15.1 TEL | [29] Capturing: python3 -c 'import socket; socket.gethostbyname("hellotelepresence-2")'
+  15.4 TEL | [29] exit 1 in 0.27 secs.
+  15.4 TEL | [30] Capturing: python3 -c 'import socket; socket.gethostbyname("hellotelepresence-2.a.sanity.check.telepresence.io")'
+  15.4  24 | Starting server with Python version 3.6.8
+  15.4  24 |  s: latency control setting = True
+  15.4  24 |  s: available routes:
+  15.4  24 | c : Connected.
+  15.4  24 | firewall manager: setting up.
+  15.4  24 | >> iptables -t nat -N sshuttle-12300
+  15.5  24 | >> iptables -t nat -F sshuttle-12300
+  15.5  24 | >> iptables -t nat -I OUTPUT 1 -j sshuttle-12300
+  15.5  24 | >> iptables -t nat -I PREROUTING 1 -j sshuttle-12300
+  15.6  24 | >> iptables -t nat -A sshuttle-12300 -j RETURN --dest 127.0.0.1/32 -p tcp
+  15.6  24 | >> iptables -t nat -A sshuttle-12300 -j REDIRECT --dest 100.96.9.0/24 -p tcp --to-ports 12300 -m ttl ! --ttl 42
+  15.6  24 | >> iptables -t nat -A sshuttle-12300 -j REDIRECT --dest 100.96.6.0/24 -p tcp --to-ports 12300 -m ttl ! --ttl 42
+  15.7  24 | >> iptables -t nat -A sshuttle-12300 -j REDIRECT --dest 100.96.8.0/24 -p tcp --to-ports 12300 -m ttl ! --ttl 42
+  15.7  24 | >> iptables -t nat -A sshuttle-12300 -j REDIRECT --dest 100.96.3.0/24 -p tcp --to-ports 12300 -m ttl ! --ttl 42
+  15.8  24 | >> iptables -t nat -A sshuttle-12300 -j REDIRECT --dest 100.96.4.0/24 -p tcp --to-ports 12300 -m ttl ! --ttl 42
+  15.8  24 | >> iptables -t nat -A sshuttle-12300 -j REDIRECT --dest 100.96.7.0/24 -p tcp --to-ports 12300 -m ttl ! --ttl 42
+  15.8  24 | >> iptables -t nat -A sshuttle-12300 -j REDIRECT --dest 100.96.2.0/24 -p tcp --to-ports 12300 -m ttl ! --ttl 42
+  15.9  24 | >> iptables -t nat -A sshuttle-12300 -j REDIRECT --dest 100.64.0.0/13 -p tcp --to-ports 12300 -m ttl ! --ttl 42
+  15.9  24 | >> iptables -t nat -A sshuttle-12300 -j REDIRECT --dest 0.0.0.0/0 -p tcp --to-ports 12300 -m ttl ! --ttl 42
+  16.0  24 | >> iptables -t nat -A sshuttle-12300 -j REDIRECT --dest 127.0.0.53/32 -p udp --dport 53 --to-ports 12300 -m ttl ! --ttl 42
+  16.0  24 | >> iptables -t nat -A sshuttle-12300 -j REDIRECT --dest 224.0.0.252/32 -p udp --dport 5355 --to-ports 12300 -m ttl ! --ttl 42
+  16.0 TEL | [30] exit 1 in 0.62 secs.
+  16.0  24 | conntrack v1.4.4 (conntrack-tools): 0 flow entries have been deleted.
+  16.1 TEL | Wait for vpn-tcp connection: hellotelepresence-3
+  16.1 TEL | [31] Capturing: python3 -c 'import socket; socket.gethostbyname("hellotelepresence-3")'
+  16.2  24 | c : DNS request from ('127.0.0.1', 58359) to None: 61 bytes
+  16.2  13 | 2021-03-09T21:42:08+0000 [stdout#info] Set DNS suffix we filter out to: [(b'attlocal', b'net')]
+  16.2  13 | 2021-03-09T21:42:08+0000 [stdout#info] Result for b'hellotelepresence-3.attlocal.net' is ['127.0.0.1']
+  16.3 TEL | [31] captured in 0.17 secs.
+  16.3 TEL | Resolved hellotelepresence-3. 2 more...
+  16.3 TEL | [32] Capturing: python3 -c 'import socket; socket.gethostbyname("hellotelepresence-3.a.sanity.check.telepresence.io")'
+  16.3  24 | c : DNS request from ('127.0.0.1', 47942) to None: 79 bytes
+  16.4  13 | 2021-03-09T21:42:09+0000 [stdout#info] Sanity check: b'hellotelepresence-3.a.sanity.check.telepresence.io'
+  16.4  24 | c : DNS request from ('127.0.0.1', 37500) to None: 92 bytes
+  16.4  13 | 2021-03-09T21:42:09+0000 [stdout#info] Set DNS suffix we filter out to: [(b'a', b'sanity', b'check', b'telepresence', b'io', b'attlocal', b'net'), (b'attlocal', b'net')]
+  16.4  13 | 2021-03-09T21:42:09+0000 [stdout#info] Result for b'hellotelepresence-3.a.sanity.check.telepresence.io.attlocal.net' is ['127.0.0.1']
+  16.4 TEL | [32] captured in 0.17 secs.
+  16.5 TEL | Wait for vpn-tcp connection: hellotelepresence-4
+  16.5 TEL | [33] Capturing: python3 -c 'import socket; socket.gethostbyname("hellotelepresence-4")'
+  16.6  24 | c : DNS request from ('127.0.0.1', 57038) to None: 61 bytes
+  16.6  13 | 2021-03-09T21:42:09+0000 [stdout#info] Result for b'hellotelepresence-4.attlocal.net' is ['127.0.0.1']
+  16.7 TEL | [33] captured in 0.12 secs.
+  16.7 TEL | Resolved hellotelepresence-4. 1 more...
+  16.7 TEL | [34] Capturing: python3 -c 'import socket; socket.gethostbyname("hellotelepresence-4.a.sanity.check.telepresence.io")'
+  16.7  24 | c : DNS request from ('127.0.0.1', 60017) to None: 79 bytes
+  16.8  13 | 2021-03-09T21:42:09+0000 [stdout#info] Sanity check: b'hellotelepresence-4.a.sanity.check.telepresence.io'
+  16.8  24 | c : DNS request from ('127.0.0.1', 55336) to None: 92 bytes
+  16.8  13 | 2021-03-09T21:42:09+0000 [stdout#info] Result for b'hellotelepresence-4.a.sanity.check.telepresence.io.attlocal.net' is ['127.0.0.1']
+  16.8 TEL | [34] captured in 0.17 secs.
+  16.9 TEL | Wait for vpn-tcp connection: hellotelepresence-5
+  16.9 TEL | [35] Capturing: python3 -c 'import socket; socket.gethostbyname("hellotelepresence-5")'
+  17.0  24 | c : DNS request from ('127.0.0.1', 33444) to None: 61 bytes
+  17.0  13 | 2021-03-09T21:42:09+0000 [stdout#info] Result for b'hellotelepresence-5.attlocal.net' is ['127.0.0.1']
+  17.1 TEL | [35] captured in 0.12 secs.
+  17.1 TEL | Resolved hellotelepresence-5. 0 more...
+  17.1 TEL | END SPAN vpn.py:85(connect_sshuttle,sshuttle-wait)    3.7s
+  17.1 TEL | END SPAN vpn.py:62(connect_sshuttle)    5.1s
+  17.1 >>> | Setup complete. Launching your command.
+  17.1 TEL | Everything launched. Waiting to exit...
+  17.1 TEL | BEGIN SPAN runner.py:754(wait_for_exit)
+  29.6  24 | c : DNS request from ('127.0.0.1', 35064) to None: 46 bytes
+  29.6  24 | c : DNS request from ('127.0.0.1', 35064) to None: 46 bytes
+  29.7  13 | 2021-03-09T21:42:22+0000 [stdout#info] A query: b'gitlab.ngidev.com'
+  29.7  13 | 2021-03-09T21:42:22+0000 [stdout#info] AAAA query, sending back A instead: b'gitlab.ngidev.com'
+  29.7  13 | 2021-03-09T21:42:22+0000 [stdout#info] A query: b'gitlab.ngidev.com'
+  29.7  24 | c : DNS request from ('127.0.0.1', 46991) to None: 51 bytes
+  29.7  24 | c : DNS request from ('127.0.0.1', 46991) to None: 51 bytes
+  29.7  24 | c : DNS request from ('127.0.0.1', 48139) to None: 48 bytes
+  29.7  24 | c : DNS request from ('127.0.0.1', 48139) to None: 48 bytes
+  29.7  13 | 2021-03-09T21:42:22+0000 [stdout#info] A query: b'staging-i.lr-ingest.io'
+  29.7  13 | 2021-03-09T21:42:22+0000 [stdout#info] AAAA query, sending back A instead: b'staging-i.lr-ingest.io'
+  29.7  13 | 2021-03-09T21:42:22+0000 [stdout#info] A query: b'staging-i.lr-ingest.io'
+  29.7  13 | 2021-03-09T21:42:22+0000 [stdout#info] Result for b'gitlab.ngidev.com' is ['3.213.161.16', '3.230.108.196']
+  29.7  13 | 2021-03-09T21:42:22+0000 [stdout#info] Result for b'gitlab.ngidev.com' is ['3.230.108.196', '3.213.161.16']
+  29.7  24 | c : Accept TCP: 192.168.1.99:59840 -> 3.213.161.16:443.
+  29.7  13 | 2021-03-09T21:42:22+0000 [stdout#info] A query: b'messages.google.com'
+  29.7  13 | 2021-03-09T21:42:22+0000 [stdout#info] AAAA query, sending back A instead: b'messages.google.com'
+  29.7  13 | 2021-03-09T21:42:22+0000 [stdout#info] A query: b'messages.google.com'
+  29.8  13 | 2021-03-09T21:42:22+0000 [stdout#info] Result for b'staging-i.lr-ingest.io' is ['35.202.114.240']
+  29.8  13 | 2021-03-09T21:42:22+0000 [stdout#info] Result for b'messages.google.com' is ['172.217.164.174']
+  29.8  13 | 2021-03-09T21:42:22+0000 [stdout#info] Result for b'messages.google.com' is ['172.217.13.238']
+  29.8  13 | 2021-03-09T21:42:22+0000 [stdout#info] Result for b'staging-i.lr-ingest.io' is ['35.202.114.240']
+  29.8  24 | c : Accept TCP: 192.168.1.99:55000 -> 35.202.114.240:443.
+  32.7 TEL | [36] Running: sudo -n echo -n
+  32.7 TEL | [36] ran in 0.02 secs.
+  39.4 TEL | (proxy checking local liveness)
+  39.5  13 | 2021-03-09T21:42:32+0000 [Poll#info] Checkpoint
+  62.7 TEL | [37] Running: sudo -n echo -n
+  62.7 TEL | [37] ran in 0.02 secs.
+  69.7 TEL | (proxy checking local liveness)
+  69.7  13 | 2021-03-09T21:43:02+0000 [Poll#info] Checkpoint
+  92.8 TEL | [38] Running: sudo -n echo -n
+  92.8 TEL | [38] ran in 0.02 secs.
+  99.5 TEL | (proxy checking local liveness)
+  99.6  13 | 2021-03-09T21:43:32+0000 [Poll#info] Checkpoint
+ 120.3  24 | c : DNS request from ('127.0.0.1', 54255) to None: 50 bytes
+ 120.3  24 | c : DNS request from ('127.0.0.1', 54255) to None: 50 bytes
+ 120.4  13 | 2021-03-09T21:43:53+0000 [stdout#info] A query: b'mattermost.ngidev.com'
+ 120.4  13 | 2021-03-09T21:43:53+0000 [stdout#info] AAAA query, sending back A instead: b'mattermost.ngidev.com'
+ 120.4  13 | 2021-03-09T21:43:53+0000 [stdout#info] A query: b'mattermost.ngidev.com'
+ 120.4  13 | 2021-03-09T21:43:53+0000 [stdout#info] Result for b'mattermost.ngidev.com' is ['54.236.204.218', '34.193.250.21']
+ 120.4  13 | 2021-03-09T21:43:53+0000 [stdout#info] Result for b'mattermost.ngidev.com' is ['54.236.204.218', '34.193.250.21']
+ 120.4  24 | c : Accept TCP: 192.168.1.99:51496 -> 54.236.204.218:443.
+ 122.8 TEL | [39] Running: sudo -n echo -n
+ 122.8 TEL | [39] ran in 0.02 secs.
+ 129.6 TEL | (proxy checking local liveness)
+ 129.7  13 | 2021-03-09T21:44:02+0000 [Poll#info] Checkpoint
+ 149.6  24 | c : SW#8:192.168.1.99:59840: deleting (5 remain)
+ 149.6  24 | c : SW#8:192.168.1.99:59840: error was: uread: [Errno 104] Connection reset by peer
+ 149.6  24 | c : SW'unknown':Mux#14: deleting (4 remain)
+ 149.6  24 | c : DNS request from ('127.0.0.1', 56198) to None: 44 bytes
+ 149.6  24 | c : DNS request from ('127.0.0.1', 56198) to None: 44 bytes
+ 149.7  13 | 2021-03-09T21:44:22+0000 [stdout#info] A query: b'play.google.com'
+ 149.7  13 | 2021-03-09T21:44:22+0000 [stdout#info] AAAA query, sending back A instead: b'play.google.com'
+ 149.7  13 | 2021-03-09T21:44:22+0000 [stdout#info] A query: b'play.google.com'
+ 149.7  13 | 2021-03-09T21:44:22+0000 [stdout#info] Result for b'play.google.com' is ['172.217.7.174']
+ 149.7  13 | 2021-03-09T21:44:22+0000 [stdout#info] Result for b'play.google.com' is ['172.217.13.238']
+ 149.7  24 | c : DNS request from ('127.0.0.1', 53188) to None: 48 bytes
+ 149.7  24 | c : DNS request from ('127.0.0.1', 53188) to None: 48 bytes
+ 149.7  13 | 2021-03-09T21:44:22+0000 [stdout#info] A query: b'messages.google.com'
+ 149.7  13 | 2021-03-09T21:44:22+0000 [stdout#info] AAAA query, sending back A instead: b'messages.google.com'
+ 149.7  13 | 2021-03-09T21:44:22+0000 [stdout#info] A query: b'messages.google.com'
+ 149.7  13 | 2021-03-09T21:44:22+0000 [stdout#info] Result for b'messages.google.com' is ['172.217.164.174']
+ 149.7  13 | 2021-03-09T21:44:22+0000 [stdout#info] Result for b'messages.google.com' is ['172.217.164.174']
+ 152.9 TEL | [40] Running: sudo -n echo -n
+ 152.9 TEL | [40] ran in 0.02 secs.
+ 157.0  24 | c : DNS request from ('127.0.0.1', 39802) to None: 45 bytes
+ 157.0  24 | c : DNS request from ('127.0.0.1', 39802) to None: 45 bytes
+ 157.1  13 | 2021-03-09T21:44:29+0000 [stdout#info] A query: b'nexus.ngidev.com'
+ 157.1  13 | 2021-03-09T21:44:29+0000 [stdout#info] AAAA query, sending back A instead: b'nexus.ngidev.com'
+ 157.1  13 | 2021-03-09T21:44:29+0000 [stdout#info] A query: b'nexus.ngidev.com'
+ 157.1  13 | 2021-03-09T21:44:29+0000 [stdout#info] Result for b'nexus.ngidev.com' is ['34.195.240.49', '3.225.112.29']
+ 157.1  13 | 2021-03-09T21:44:29+0000 [stdout#info] Result for b'nexus.ngidev.com' is ['3.225.112.29', '34.195.240.49']
+ 157.1  24 | c : Accept TCP: 192.168.1.99:40030 -> 34.195.240.49:8081.
+ 157.9  24 | c : DNS request from ('127.0.0.1', 36559) to None: 45 bytes
+ 157.9  24 | c : DNS request from ('127.0.0.1', 36559) to None: 45 bytes
+ 157.9  24 | c : DNS request from ('127.0.0.1', 33244) to None: 45 bytes
+ 157.9  24 | c : DNS request from ('127.0.0.1', 33244) to None: 45 bytes
+ 157.9  13 | 2021-03-09T21:44:30+0000 [stdout#info] A query: b'nexus.ngidev.com'
+ 158.0  13 | 2021-03-09T21:44:30+0000 [stdout#info] Result for b'nexus.ngidev.com' is ['34.195.240.49', '3.225.112.29']
+ 158.0  13 | 2021-03-09T21:44:30+0000 [stdout#info] AAAA query, sending back A instead: b'nexus.ngidev.com'
+ 158.0  13 | 2021-03-09T21:44:30+0000 [stdout#info] A query: b'nexus.ngidev.com'
+ 158.0  13 | 2021-03-09T21:44:30+0000 [stdout#info] A query: b'nexus.ngidev.com'
+ 158.0  13 | 2021-03-09T21:44:30+0000 [stdout#info] AAAA query, sending back A instead: b'nexus.ngidev.com'
+ 158.0  13 | 2021-03-09T21:44:30+0000 [stdout#info] A query: b'nexus.ngidev.com'
+ 158.0  13 | 2021-03-09T21:44:30+0000 [stdout#info] Result for b'nexus.ngidev.com' is ['3.225.112.29', '34.195.240.49']
+ 158.0  24 |  s: SW'unknown':Mux#14: deleting (7 remain)
+ 158.0  24 |  s: SW#6:3.213.161.16:443: deleting (6 remain)
+ 158.0  13 | 2021-03-09T21:44:30+0000 [stdout#info] Result for b'nexus.ngidev.com' is ['3.225.112.29', '34.195.240.49']
+ 158.0  13 | 2021-03-09T21:44:30+0000 [stdout#info] Result for b'nexus.ngidev.com' is ['34.195.240.49', '3.225.112.29']
+ 158.0  24 | c : DNS request from ('127.0.0.1', 57823) to None: 45 bytes
+ 158.0  24 | c : DNS request from ('127.0.0.1', 57823) to None: 45 bytes
+ 158.0  24 | c : DNS request from ('127.0.0.1', 39372) to None: 45 bytes
+ 158.0  24 | c : DNS request from ('127.0.0.1', 39372) to None: 45 bytes
+ 158.0  13 | 2021-03-09T21:44:30+0000 [stdout#info] A query: b'nexus.ngidev.com'
+ 158.1  13 | 2021-03-09T21:44:30+0000 [stdout#info] Result for b'nexus.ngidev.com' is ['3.225.112.29', '34.195.240.49']
+ 158.1  13 | 2021-03-09T21:44:30+0000 [stdout#info] AAAA query, sending back A instead: b'nexus.ngidev.com'
+ 158.1  13 | 2021-03-09T21:44:30+0000 [stdout#info] A query: b'nexus.ngidev.com'
+ 158.1  13 | 2021-03-09T21:44:30+0000 [stdout#info] Result for b'nexus.ngidev.com' is ['3.225.112.29', '34.195.240.49']
+ 158.1  24 | c : DNS request from ('127.0.0.1', 35044) to None: 45 bytes
+ 158.1  24 | c : DNS request from ('127.0.0.1', 35044) to None: 45 bytes
+ 158.1  13 | 2021-03-09T21:44:30+0000 [stdout#info] A query: b'nexus.ngidev.com'
+ 158.1  13 | 2021-03-09T21:44:30+0000 [stdout#info] Result for b'nexus.ngidev.com' is ['34.195.240.49', '3.225.112.29']
+ 158.1  13 | 2021-03-09T21:44:30+0000 [stdout#info] AAAA query, sending back A instead: b'nexus.ngidev.com'
+ 158.1  13 | 2021-03-09T21:44:30+0000 [stdout#info] A query: b'nexus.ngidev.com'
+ 158.1  13 | 2021-03-09T21:44:30+0000 [stdout#info] Result for b'nexus.ngidev.com' is ['34.195.240.49', '3.225.112.29']
+ 158.1  24 | c : DNS request from ('127.0.0.1', 58567) to None: 45 bytes
+ 158.1  24 | c : DNS request from ('127.0.0.1', 58567) to None: 45 bytes
+ 158.1  13 | 2021-03-09T21:44:30+0000 [stdout#info] A query: b'nexus.ngidev.com'
+ 158.1  13 | 2021-03-09T21:44:30+0000 [stdout#info] Result for b'nexus.ngidev.com' is ['3.225.112.29', '34.195.240.49']
+ 158.1  13 | 2021-03-09T21:44:30+0000 [stdout#info] AAAA query, sending back A instead: b'nexus.ngidev.com'
+ 158.1  13 | 2021-03-09T21:44:30+0000 [stdout#info] A query: b'nexus.ngidev.com'
+ 158.1  13 | 2021-03-09T21:44:30+0000 [stdout#info] Result for b'nexus.ngidev.com' is ['3.225.112.29', '34.195.240.49']
+ 158.1  24 | c : DNS request from ('127.0.0.1', 43210) to None: 45 bytes
+ 158.1  24 | c : DNS request from ('127.0.0.1', 43210) to None: 45 bytes
+ 158.2  13 | 2021-03-09T21:44:30+0000 [stdout#info] A query: b'nexus.ngidev.com'
+ 158.2  13 | 2021-03-09T21:44:30+0000 [stdout#info] Result for b'nexus.ngidev.com' is ['34.195.240.49', '3.225.112.29']
+ 158.2  13 | 2021-03-09T21:44:30+0000 [stdout#info] AAAA query, sending back A instead: b'nexus.ngidev.com'
+ 158.2  13 | 2021-03-09T21:44:30+0000 [stdout#info] A query: b'nexus.ngidev.com'
+ 158.2  13 | 2021-03-09T21:44:30+0000 [stdout#info] Result for b'nexus.ngidev.com' is ['3.225.112.29', '34.195.240.49']
+ 158.2  24 | c : DNS request from ('127.0.0.1', 42409) to None: 45 bytes
+ 158.2  24 | c : DNS request from ('127.0.0.1', 42409) to None: 45 bytes
+ 158.2  13 | 2021-03-09T21:44:30+0000 [stdout#info] A query: b'nexus.ngidev.com'
+ 158.2  13 | 2021-03-09T21:44:30+0000 [stdout#info] Result for b'nexus.ngidev.com' is ['3.225.112.29', '34.195.240.49']
+ 158.2  13 | 2021-03-09T21:44:30+0000 [stdout#info] AAAA query, sending back A instead: b'nexus.ngidev.com'
+ 158.2  13 | 2021-03-09T21:44:30+0000 [stdout#info] A query: b'nexus.ngidev.com'
+ 158.2  13 | 2021-03-09T21:44:30+0000 [stdout#info] Result for b'nexus.ngidev.com' is ['3.225.112.29', '34.195.240.49']
+ 158.2  24 | c : DNS request from ('127.0.0.1', 51590) to None: 45 bytes
+ 158.2  24 | c : DNS request from ('127.0.0.1', 51590) to None: 45 bytes
+ 158.2  13 | 2021-03-09T21:44:30+0000 [stdout#info] A query: b'nexus.ngidev.com'
+ 158.2  13 | 2021-03-09T21:44:30+0000 [stdout#info] Result for b'nexus.ngidev.com' is ['34.195.240.49', '3.225.112.29']
+ 158.2  13 | 2021-03-09T21:44:30+0000 [stdout#info] AAAA query, sending back A instead: b'nexus.ngidev.com'
+ 158.2  13 | 2021-03-09T21:44:30+0000 [stdout#info] A query: b'nexus.ngidev.com'
+ 158.2  13 | 2021-03-09T21:44:30+0000 [stdout#info] Result for b'nexus.ngidev.com' is ['34.195.240.49', '3.225.112.29']
+ 158.2  24 | c : DNS request from ('127.0.0.1', 42356) to None: 45 bytes
+ 158.2  24 | c : DNS request from ('127.0.0.1', 42356) to None: 45 bytes
+ 158.2  13 | 2021-03-09T21:44:30+0000 [stdout#info] A query: b'nexus.ngidev.com'
+ 158.2  13 | 2021-03-09T21:44:30+0000 [stdout#info] Result for b'nexus.ngidev.com' is ['34.195.240.49', '3.225.112.29']
+ 158.2  13 | 2021-03-09T21:44:30+0000 [stdout#info] AAAA query, sending back A instead: b'nexus.ngidev.com'
+ 158.2  13 | 2021-03-09T21:44:30+0000 [stdout#info] A query: b'nexus.ngidev.com'
+ 158.2  24 | c : DNS request from ('127.0.0.1', 55297) to None: 45 bytes
+ 158.2  24 | c : DNS request from ('127.0.0.1', 55297) to None: 45 bytes
+ 158.3  13 | 2021-03-09T21:44:30+0000 [stdout#info] Result for b'nexus.ngidev.com' is ['34.195.240.49', '3.225.112.29']
+ 158.3  24 | c : Accept TCP: 192.168.1.99:40040 -> 34.195.240.49:8081.
+ 158.3  24 | c : Accept TCP: 192.168.1.99:40186 -> 3.225.112.29:8081.
+ 158.3  13 | 2021-03-09T21:44:30+0000 [stdout#info] A query: b'nexus.ngidev.com'
+ 158.3  13 | 2021-03-09T21:44:30+0000 [stdout#info] AAAA query, sending back A instead: b'nexus.ngidev.com'
+ 158.3  13 | 2021-03-09T21:44:30+0000 [stdout#info] A query: b'nexus.ngidev.com'
+ 158.3  13 | 2021-03-09T21:44:30+0000 [stdout#info] Result for b'nexus.ngidev.com' is ['3.225.112.29', '34.195.240.49']
+ 158.3  13 | 2021-03-09T21:44:30+0000 [stdout#info] Result for b'nexus.ngidev.com' is ['34.195.240.49', '3.225.112.29']
+ 158.3  13 | 2021-03-09T21:44:30+0000 [stdout#info] A query: b'nexus.ngidev.com'
+ 158.3  13 | 2021-03-09T21:44:30+0000 [stdout#info] Result for b'nexus.ngidev.com' is ['3.225.112.29', '34.195.240.49']
+ 158.3  13 | 2021-03-09T21:44:30+0000 [stdout#info] AAAA query, sending back A instead: b'nexus.ngidev.com'
+ 158.3  13 | 2021-03-09T21:44:30+0000 [stdout#info] A query: b'nexus.ngidev.com'
+ 158.3  13 | 2021-03-09T21:44:30+0000 [stdout#info] Result for b'nexus.ngidev.com' is ['3.225.112.29', '34.195.240.49']
+ 159.2  24 | c : Accept TCP: 192.168.1.99:40196 -> 3.225.112.29:8081.
+ 159.2  24 | c : Accept TCP: 192.168.1.99:40054 -> 34.195.240.49:8081.
+ 159.2  24 | c : Accept TCP: 192.168.1.99:40200 -> 3.225.112.29:8081.
+ 159.2  24 | c : Accept TCP: 192.168.1.99:40058 -> 34.195.240.49:8081.
+ 159.2  24 | c : Accept TCP: 192.168.1.99:40204 -> 3.225.112.29:8081.
+ 159.2  24 | c : Accept TCP: 192.168.1.99:40062 -> 34.195.240.49:8081.
+ 159.2  24 | c : Accept TCP: 192.168.1.99:40064 -> 34.195.240.49:8081.
+ 159.2  24 | c : Accept TCP: 192.168.1.99:40210 -> 3.225.112.29:8081.
+ 159.2  24 | c : Accept TCP: 192.168.1.99:40212 -> 3.225.112.29:8081.
+ 159.4 TEL | (proxy checking local liveness)
+ 159.5  13 | 2021-03-09T21:44:32+0000 [Poll#info] Checkpoint
+ 177.5  24 |  s: SW'unknown':Mux#54: deleting (27 remain)
+ 177.5  24 |  s: SW#14:3.225.112.29:8081: deleting (26 remain)
+ 177.5  24 |  s: SW'unknown':Mux#55: deleting (25 remain)
+ 177.5  24 |  s: SW#16:34.195.240.49:8081: deleting (24 remain)
+ 177.6  24 | c : SW'unknown':Mux#55: deleting (27 remain)
+ 177.6  24 | c : SW#19:192.168.1.99:40062: deleting (26 remain)
+ 177.6  24 | c : SW#19:192.168.1.99:40062: error was: nowrite: [Errno 107] Transport endpoint is not connected
+ 177.6  24 | c : SW'unknown':Mux#54: deleting (25 remain)
+ 177.6  24 | c : SW#18:192.168.1.99:40204: deleting (24 remain)
+ 177.6  24 | c : SW#18:192.168.1.99:40204: error was: nowrite: [Errno 107] Transport endpoint is not connected
+ 177.6  24 | c : SW'unknown':Mux#49: deleting (23 remain)
+ 177.6  24 | c : SW#13:192.168.1.99:40186: deleting (22 remain)
+ 177.6  24 | c : SW#13:192.168.1.99:40186: error was: nowrite: [Errno 107] Transport endpoint is not connected
+ 177.6  24 | c : SW#16:192.168.1.99:40200: deleting (21 remain)
+ 177.6  24 | c : SW#16:192.168.1.99:40200: error was: nowrite: [Errno 107] Transport endpoint is not connected
+ 177.6  24 | c : SW'unknown':Mux#52: deleting (20 remain)
+ 177.6  24 | c : SW#17:192.168.1.99:40058: deleting (19 remain)
+ 177.6  24 | c : SW#17:192.168.1.99:40058: error was: nowrite: [Errno 107] Transport endpoint is not connected
+ 177.6  24 | c : SW'unknown':Mux#53: deleting (18 remain)
+ 177.6  24 | c : SW'unknown':Mux#57: deleting (17 remain)
+ 177.6  24 | c : SW#21:192.168.1.99:40210: deleting (16 remain)
+ 177.6  24 | c : SW#21:192.168.1.99:40210: error was: nowrite: [Errno 107] Transport endpoint is not connected
+ 177.9  24 |  s: SW'unknown':Mux#52: deleting (23 remain)
+ 177.9  24 |  s: SW#12:3.225.112.29:8081: deleting (22 remain)
+ 177.9  24 |  s: SW'unknown':Mux#53: deleting (21 remain)
+ 177.9  24 |  s: SW#13:34.195.240.49:8081: deleting (20 remain)
+ 177.9  24 |  s: SW'unknown':Mux#57: deleting (19 remain)
+ 177.9  24 |  s: SW#18:3.225.112.29:8081: deleting (18 remain)
+ 177.9  24 |  s: SW'unknown':Mux#48: deleting (17 remain)
+ 177.9  24 |  s: SW#6:34.195.240.49:8081: deleting (16 remain)
+ 177.9  24 |  s: SW'unknown':Mux#51: deleting (15 remain)
+ 177.9  24 |  s: SW#11:34.195.240.49:8081: deleting (14 remain)
+ 182.9 TEL | [41] Running: sudo -n echo -n
+ 182.9 TEL | [41] ran in 0.01 secs.
+ 189.5 TEL | (proxy checking local liveness)
+ 189.6  13 | 2021-03-09T21:45:02+0000 [Poll#info] Checkpoint
+ 209.6  24 | c : DNS request from ('127.0.0.1', 43235) to None: 60 bytes
+ 209.6  24 | c : DNS request from ('127.0.0.1', 43235) to None: 60 bytes
+ 209.6  13 | 2021-03-09T21:45:22+0000 [stdout#info] A query: b'accounts.development.atmimp.com'
+ 209.6  13 | 2021-03-09T21:45:22+0000 [stdout#info] AAAA query, sending back A instead: b'accounts.development.atmimp.com'
+ 209.6  13 | 2021-03-09T21:45:22+0000 [stdout#info] A query: b'accounts.development.atmimp.com'
+ 209.7  13 | 2021-03-09T21:45:22+0000 [stdout#info] Result for b'accounts.development.atmimp.com' is ['184.72.155.128', '34.224.186.196', '54.208.58.198']
+ 209.7  24 | c : Accept TCP: 192.168.1.99:42302 -> 184.72.155.128:443.
+ 209.7  13 | 2021-03-09T21:45:22+0000 [stdout#info] Result for b'accounts.development.atmimp.com' is ['34.224.186.196', '184.72.155.128', '54.208.58.198']
+ 209.8  24 | c : SW'unknown':Mux#51: deleting (17 remain)
+ 209.8  24 | c : SW#15:192.168.1.99:40054: deleting (16 remain)
+ 209.8  24 | c : SW#15:192.168.1.99:40054: error was: nowrite: [Errno 107] Transport endpoint is not connected
+ 209.8  24 | c : SW#12:192.168.1.99:40040: deleting (15 remain)
+ 209.8  24 | c : SW#12:192.168.1.99:40040: error was: nowrite: [Errno 107] Transport endpoint is not connected
+ 209.8  24 | c : SW'unknown':Mux#48: deleting (14 remain)
+ 209.8  24 | c : SW'unknown':Mux#25: deleting (13 remain)
+ 209.8  24 | c : SW#8:192.168.1.99:40030: deleting (12 remain)
+ 209.8  24 | c : SW#8:192.168.1.99:40030: error was: nowrite: [Errno 107] Transport endpoint is not connected
+ 212.9 TEL | [42] Running: sudo -n echo -n
+ 213.0 TEL | [42] ran in 0.01 secs.
+ 219.4 TEL | (proxy checking local liveness)
+ 219.5  13 | 2021-03-09T21:45:32+0000 [Poll#info] Checkpoint
+ 233.6  24 | c : DNS request from ('127.0.0.1', 56200) to None: 46 bytes
+ 233.6  24 | c : DNS request from ('127.0.0.1', 56200) to None: 46 bytes
+ 233.6  13 | 2021-03-09T21:45:46+0000 [stdout#info] A query: b'gitlab.ngidev.com'
+ 233.6  13 | 2021-03-09T21:45:46+0000 [stdout#info] AAAA query, sending back A instead: b'gitlab.ngidev.com'
+ 233.6  13 | 2021-03-09T21:45:46+0000 [stdout#info] A query: b'gitlab.ngidev.com'
+ 233.6  13 | 2021-03-09T21:45:46+0000 [stdout#info] Result for b'gitlab.ngidev.com' is ['3.230.108.196', '3.213.161.16']
+ 233.6  24 | c : Accept TCP: 192.168.1.99:42948 -> 3.230.108.196:22.
+ 233.6  13 | 2021-03-09T21:45:46+0000 [stdout#info] Result for b'gitlab.ngidev.com' is ['3.230.108.196', '3.213.161.16']
+ 233.7  24 |  s: SW'unknown':Mux#56: deleting (17 remain)
+ 233.7  24 |  s: SW#17:34.195.240.49:8081: deleting (16 remain)
+ 233.7  24 |  s: SW'unknown':Mux#25: deleting (15 remain)
+ 233.7  24 |  s: SW#15:34.195.240.49:8081: deleting (14 remain)
+ 233.7  24 |  s: SW'unknown':Mux#50: deleting (13 remain)
+ 233.7  24 |  s: SW#9:3.225.112.29:8081: deleting (12 remain)
+ 243.0 TEL | [43] Running: sudo -n echo -n
+ 243.0 TEL | [43] ran in 0.02 secs.
+ 249.4 TEL | (proxy checking local liveness)
+ 249.5  13 | 2021-03-09T21:46:02+0000 [Poll#info] Checkpoint
+ 269.7  24 | c : DNS request from ('127.0.0.1', 45226) to None: 48 bytes
+ 269.7  24 | c : DNS request from ('127.0.0.1', 45226) to None: 48 bytes
+ 269.7  13 | 2021-03-09T21:46:22+0000 [stdout#info] A query: b'messages.google.com'
+ 269.7  13 | 2021-03-09T21:46:22+0000 [stdout#info] AAAA query, sending back A instead: b'messages.google.com'
+ 269.7  13 | 2021-03-09T21:46:22+0000 [stdout#info] A query: b'messages.google.com'
+ 269.7  13 | 2021-03-09T21:46:22+0000 [stdout#info] Result for b'messages.google.com' is ['172.217.164.174']
+ 269.7  13 | 2021-03-09T21:46:22+0000 [stdout#info] Result for b'messages.google.com' is ['172.217.164.174']
+ 273.0 TEL | [44] Running: sudo -n echo -n
+ 273.1 TEL | [44] ran in 0.02 secs.
+ 279.4 TEL | (proxy checking local liveness)
+ 279.5  13 | 2021-03-09T21:46:32+0000 [Poll#info] Checkpoint
+ 283.8  24 | c : DNS request from ('127.0.0.1', 33111) to None: 48 bytes
+ 283.8  24 | c : DNS request from ('127.0.0.1', 33111) to None: 48 bytes
+ 283.9  13 | 2021-03-09T21:46:36+0000 [stdout#info] A query: b'clients4.google.com'
+ 283.9  13 | 2021-03-09T21:46:36+0000 [stdout#info] AAAA query, sending back A instead: b'clients4.google.com'
+ 283.9  13 | 2021-03-09T21:46:36+0000 [stdout#info] A query: b'clients4.google.com'
+ 283.9  13 | 2021-03-09T21:46:36+0000 [stdout#info] Result for b'clients4.google.com' is ['172.217.7.174']
+ 283.9  13 | 2021-03-09T21:46:36+0000 [stdout#info] Result for b'clients4.google.com' is ['172.217.13.78']
+ 283.9  24 | c : SW#8:192.168.1.99:42948: deleting (13 remain)
+ 283.9  24 | c : SW'unknown':Mux#64: deleting (12 remain)
+ 284.0  24 | c : Accept TCP: 192.168.1.99:43416 -> 172.217.7.174:443.
+ 303.1 TEL | [45] Running: sudo -n echo -n
+ 303.1 TEL | [45] ran in 0.02 secs.
+ 309.4 TEL | (proxy checking local liveness)
+ 309.5  13 | 2021-03-09T21:47:02+0000 [Poll#info] Checkpoint
+ 329.6  24 | c : DNS request from ('127.0.0.1', 46425) to None: 46 bytes
+ 329.6  24 | c : DNS request from ('127.0.0.1', 46425) to None: 46 bytes
+ 329.7  13 | 2021-03-09T21:47:22+0000 [stdout#info] A query: b'gitlab.ngidev.com'
+ 329.7  13 | 2021-03-09T21:47:22+0000 [stdout#info] AAAA query, sending back A instead: b'gitlab.ngidev.com'
+ 329.7  13 | 2021-03-09T21:47:22+0000 [stdout#info] A query: b'gitlab.ngidev.com'
+ 329.7  13 | 2021-03-09T21:47:22+0000 [stdout#info] Result for b'gitlab.ngidev.com' is ['3.230.108.196', '3.213.161.16']
+ 329.7  13 | 2021-03-09T21:47:22+0000 [stdout#info] Result for b'gitlab.ngidev.com' is ['3.230.108.196', '3.213.161.16']
+ 329.7  24 | c : Accept TCP: 192.168.1.99:44184 -> 3.230.108.196:443.
+ 329.7  24 | c : DNS request from ('127.0.0.1', 54712) to None: 44 bytes
+ 329.7  24 | c : DNS request from ('127.0.0.1', 54712) to None: 44 bytes
+ 329.7  24 |  s: SW'unknown':Mux#64: deleting (15 remain)
+ 329.7  24 |  s: SW#16:3.230.108.196:22: deleting (14 remain)
+ 329.7  13 | 2021-03-09T21:47:22+0000 [stdout#info] A query: b'play.google.com'
+ 329.7  13 | 2021-03-09T21:47:22+0000 [stdout#info] AAAA query, sending back A instead: b'play.google.com'
+ 329.7  13 | 2021-03-09T21:47:22+0000 [stdout#info] A query: b'play.google.com'
+ 329.8  13 | 2021-03-09T21:47:22+0000 [stdout#info] Result for b'play.google.com' is ['142.250.73.238']
+ 329.8  13 | 2021-03-09T21:47:22+0000 [stdout#info] Result for b'play.google.com' is ['172.217.15.110']
+ 333.1 TEL | [46] Running: sudo -n echo -n
+ 333.2 TEL | [46] ran in 0.02 secs.
+ 339.5 TEL | (proxy checking local liveness)
+ 339.5  13 | 2021-03-09T21:47:32+0000 [Poll#info] Checkpoint
+ 356.1  24 | c : DNS request from ('127.0.0.1', 51262) to None: 52 bytes
+ 356.1  24 | c : DNS request from ('127.0.0.1', 51262) to None: 52 bytes
+ 356.1  13 | 2021-03-09T21:47:48+0000 [stdout#info] A query: b'pollserver.lastpass.com'
+ 356.1  13 | 2021-03-09T21:47:48+0000 [stdout#info] AAAA query, sending back A instead: b'pollserver.lastpass.com'
+ 356.1  13 | 2021-03-09T21:47:48+0000 [stdout#info] A query: b'pollserver.lastpass.com'
+ 356.1  13 | 2021-03-09T21:47:48+0000 [stdout#info] Result for b'pollserver.lastpass.com' is ['104.127.251.133']
+ 356.1  13 | 2021-03-09T21:47:48+0000 [stdout#info] Result for b'pollserver.lastpass.com' is ['104.127.251.133']
+ 356.1  24 | c : Accept TCP: 192.168.1.99:39464 -> 104.127.251.133:443.
+ 356.1  24 | c : SW#8:192.168.1.99:43416: deleting (17 remain)
+ 356.1  24 | c : SW'unknown':Mux#69: deleting (16 remain)
+ 356.3  24 |  s: SW'unknown':Mux#69: deleting (15 remain)
+ 356.3  24 |  s: SW#14:172.217.7.174:443: deleting (14 remain)
+ 363.2 TEL | [47] Running: sudo -n echo -n
+ 363.2 TEL | [47] ran in 0.02 secs.
+ 369.6 TEL | (proxy checking local liveness)
+ 369.6  13 | 2021-03-09T21:48:02+0000 [Poll#info] Checkpoint
+ 389.6  24 | c : DNS request from ('127.0.0.1', 51274) to None: 57 bytes
+ 389.6  24 | c : DNS request from ('127.0.0.1', 51274) to None: 57 bytes
+ 389.6  24 | c : SW#15:192.168.1.99:39464: deleting (15 remain)
+ 389.6  24 | c : SW'unknown':Mux#77: deleting (14 remain)
+ 389.7  24 | c : DNS request from ('127.0.0.1', 49375) to None: 48 bytes
+ 389.7  24 | c : DNS request from ('127.0.0.1', 49375) to None: 48 bytes
+ 389.7  13 | 2021-03-09T21:48:22+0000 [stdout#info] A query: b'notes-pa.clients6.google.com'
+ 389.7  13 | 2021-03-09T21:48:22+0000 [stdout#info] AAAA query, sending back A instead: b'notes-pa.clients6.google.com'
+ 389.7  13 | 2021-03-09T21:48:22+0000 [stdout#info] A query: b'notes-pa.clients6.google.com'
+ 389.7  13 | 2021-03-09T21:48:22+0000 [stdout#info] Result for b'notes-pa.clients6.google.com' is ['172.217.5.234']
+ 389.7  13 | 2021-03-09T21:48:22+0000 [stdout#info] Result for b'notes-pa.clients6.google.com' is ['172.217.5.234']
+ 389.7  13 | 2021-03-09T21:48:22+0000 [stdout#info] A query: b'messages.google.com'
+ 389.7  13 | 2021-03-09T21:48:22+0000 [stdout#info] AAAA query, sending back A instead: b'messages.google.com'
+ 389.7  13 | 2021-03-09T21:48:22+0000 [stdout#info] A query: b'messages.google.com'
+ 389.7  13 | 2021-03-09T21:48:22+0000 [stdout#info] Result for b'messages.google.com' is ['172.217.15.78']
+ 389.8  13 | 2021-03-09T21:48:22+0000 [stdout#info] Result for b'messages.google.com' is ['172.217.15.78']
+ 393.2 TEL | [48] Running: sudo -n echo -n
+ 393.3 TEL | [48] ran in 0.02 secs.
+ 399.7 TEL | (proxy checking local liveness)
+ 399.7  13 | 2021-03-09T21:48:32+0000 [Poll#info] Checkpoint
+ 423.3 TEL | [49] Running: sudo -n echo -n
+ 423.3 TEL | [49] ran in 0.02 secs.
+ 429.4 TEL | (proxy checking local liveness)
+ 429.5  13 | 2021-03-09T21:49:02+0000 [Poll#info] Checkpoint
+ 449.6  24 | c : DNS request from ('127.0.0.1', 56376) to None: 51 bytes
+ 449.6  24 | c : DNS request from ('127.0.0.1', 56376) to None: 51 bytes
+ 449.7  13 | 2021-03-09T21:49:22+0000 [stdout#info] A query: b'staging-i.lr-ingest.io'
+ 449.7  13 | 2021-03-09T21:49:22+0000 [stdout#info] AAAA query, sending back A instead: b'staging-i.lr-ingest.io'
+ 449.7  13 | 2021-03-09T21:49:22+0000 [stdout#info] A query: b'staging-i.lr-ingest.io'
+ 449.7  13 | 2021-03-09T21:49:22+0000 [stdout#info] Result for b'staging-i.lr-ingest.io' is ['35.202.114.240']
+ 449.7  13 | 2021-03-09T21:49:22+0000 [stdout#info] Result for b'staging-i.lr-ingest.io' is ['35.202.114.240']
+ 449.7  24 | c : Accept TCP: 192.168.1.99:58422 -> 35.202.114.240:443.
+ 449.9  24 | c : SW#13:192.168.1.99:42302: deleting (15 remain)
+ 449.9  24 | c : SW'unknown':Mux#61: deleting (14 remain)
+ 449.9  24 |  s: SW'unknown':Mux#61: deleting (15 remain)
+ 449.9  24 |  s: SW#12:184.72.155.128:443: deleting (14 remain)
+ 449.9  24 |  s: SW#-1:3.230.108.196:443: deleting (13 remain)
+ 449.9  24 |  s: SW'unknown':Mux#72: deleting (12 remain)
+ 449.9  24 |  s: SW'unknown':Mux#77: deleting (11 remain)
+ 449.9  24 |  s: SW#15:104.127.251.133:443: deleting (10 remain)
+ 453.3 TEL | [50] Running: sudo -n echo -n
+ 453.4 TEL | [50] ran in 0.02 secs.
+ 459.5 TEL | (proxy checking local liveness)
+ 459.5  13 | 2021-03-09T21:49:32+0000 [Poll#info] Checkpoint
+ 483.4 TEL | [51] Running: sudo -n echo -n
+ 483.4 TEL | [51] ran in 0.02 secs.
+ 489.5 TEL | (proxy checking local liveness)
+ 489.5  13 | 2021-03-09T21:50:02+0000 [Poll#info] Checkpoint
+ 509.6  24 | c : DNS request from ('127.0.0.1', 45890) to None: 60 bytes
+ 509.6  24 | c : DNS request from ('127.0.0.1', 45890) to None: 60 bytes
+ 509.7  13 | 2021-03-09T21:50:22+0000 [stdout#info] A query: b'accounts.development.atmimp.com'
+ 509.7  13 | 2021-03-09T21:50:22+0000 [stdout#info] AAAA query, sending back A instead: b'accounts.development.atmimp.com'
+ 509.7  13 | 2021-03-09T21:50:22+0000 [stdout#info] A query: b'accounts.development.atmimp.com'
+ 509.7  13 | 2021-03-09T21:50:22+0000 [stdout#info] Result for b'accounts.development.atmimp.com' is ['34.224.186.196', '54.208.58.198', '184.72.155.128']
+ 509.7  24 | c : Accept TCP: 192.168.1.99:49452 -> 34.224.186.196:443.
+ 509.7  13 | 2021-03-09T21:50:22+0000 [stdout#info] Result for b'accounts.development.atmimp.com' is ['54.208.58.198', '34.224.186.196', '184.72.155.128']
+ 509.7  24 | c : DNS request from ('127.0.0.1', 42634) to None: 48 bytes
+ 509.7  24 | c : DNS request from ('127.0.0.1', 42634) to None: 48 bytes
+ 509.7  13 | 2021-03-09T21:50:22+0000 [stdout#info] A query: b'messages.google.com'
+ 509.7  13 | 2021-03-09T21:50:22+0000 [stdout#info] Result for b'messages.google.com' is ['172.217.15.78']
+ 509.7  13 | 2021-03-09T21:50:22+0000 [stdout#info] AAAA query, sending back A instead: b'messages.google.com'
+ 509.7  13 | 2021-03-09T21:50:22+0000 [stdout#info] A query: b'messages.google.com'
+ 509.8  13 | 2021-03-09T21:50:22+0000 [stdout#info] Result for b'messages.google.com' is ['172.217.12.238']
+ 509.9  24 | c : DNS request from ('127.0.0.1', 49398) to None: 39 bytes
+ 509.9  24 | c : DNS request from ('127.0.0.1', 49398) to None: 39 bytes
+ 509.9  13 | 2021-03-09T21:50:22+0000 [stdout#info] A query: b'google.com'
+ 509.9  13 | 2021-03-09T21:50:22+0000 [stdout#info] AAAA query, sending back A instead: b'google.com'
+ 509.9  13 | 2021-03-09T21:50:22+0000 [stdout#info] A query: b'google.com'
+ 509.9  13 | 2021-03-09T21:50:22+0000 [stdout#info] Result for b'google.com' is ['172.217.13.78']
+ 509.9  13 | 2021-03-09T21:50:22+0000 [stdout#info] Result for b'google.com' is ['172.217.13.78']
+ 513.4 TEL | [52] Running: sudo -n echo -n
+ 513.5 TEL | [52] ran in 0.02 secs.
+ 519.4 TEL | (proxy checking local liveness)
+ 519.4  13 | 2021-03-09T21:50:32+0000 [Poll#info] Checkpoint
+ 543.5 TEL | [53] Running: sudo -n echo -n
+ 543.5 TEL | [53] ran in 0.02 secs.
+ 549.4 TEL | (proxy checking local liveness)
+ 549.5  13 | 2021-03-09T21:51:02+0000 [Poll#info] Checkpoint
+ 569.6  24 | c : DNS request from ('127.0.0.1', 50066) to None: 46 bytes
+ 569.6  24 | c : DNS request from ('127.0.0.1', 50066) to None: 46 bytes
+ 569.7  13 | 2021-03-09T21:51:22+0000 [stdout#info] A query: b'gitlab.ngidev.com'
+ 569.7  13 | 2021-03-09T21:51:22+0000 [stdout#info] AAAA query, sending back A instead: b'gitlab.ngidev.com'
+ 569.7  13 | 2021-03-09T21:51:22+0000 [stdout#info] A query: b'gitlab.ngidev.com'
+ 569.7  24 | c : DNS request from ('127.0.0.1', 46092) to None: 44 bytes
+ 569.7  24 | c : DNS request from ('127.0.0.1', 46092) to None: 44 bytes
+ 569.7  13 | 2021-03-09T21:51:22+0000 [stdout#info] Result for b'gitlab.ngidev.com' is ['3.230.108.196', '3.213.161.16']
+ 569.7  24 |  s: SW'unknown':Mux#15: deleting (11 remain)
+ 569.7  24 |  s: SW'unknown':Mux#49: deleting (10 remain)
+ 569.7  24 |  s: SW#8:3.225.112.29:8081: deleting (9 remain)
+ 569.7  24 |  s: SW'unknown':Mux#58: deleting (8 remain)
+ 569.7  24 |  s: SW#20:3.225.112.29:8081: deleting (7 remain)
+ 569.7  24 |  s: SW#7:35.202.114.240:443: deleting (6 remain)
+ 569.7  13 | 2021-03-09T21:51:22+0000 [stdout#info] Result for b'gitlab.ngidev.com' is ['3.230.108.196', '3.213.161.16']
+ 569.7  24 | c : Accept TCP: 192.168.1.99:46122 -> 3.230.108.196:443.
+ 569.7  13 | 2021-03-09T21:51:22+0000 [stdout#info] A query: b'play.google.com'
+ 569.7  13 | 2021-03-09T21:51:22+0000 [stdout#info] AAAA query, sending back A instead: b'play.google.com'
+ 569.7  13 | 2021-03-09T21:51:22+0000 [stdout#info] A query: b'play.google.com'
+ 569.8  13 | 2021-03-09T21:51:22+0000 [stdout#info] Result for b'play.google.com' is ['172.217.13.238']
+ 569.8  13 | 2021-03-09T21:51:22+0000 [stdout#info] Result for b'play.google.com' is ['172.217.13.238']
+ 573.5 TEL | [54] Running: sudo -n echo -n
+ 573.6 TEL | [54] ran in 0.02 secs.
+ 579.4 TEL | (proxy checking local liveness)
+ 579.4  13 | 2021-03-09T21:51:32+0000 [Poll#info] Checkpoint
+ 600.4  24 | c : DNS request from ('127.0.0.1', 44912) to None: 50 bytes
+ 600.4  24 | c : DNS request from ('127.0.0.1', 44912) to None: 50 bytes
+ 600.5  13 | 2021-03-09T21:51:53+0000 [stdout#info] A query: b'pdat.matterlytics.com'
+ 600.5  13 | 2021-03-09T21:51:53+0000 [stdout#info] AAAA query, sending back A instead: b'pdat.matterlytics.com'
+ 600.5  13 | 2021-03-09T21:51:53+0000 [stdout#info] A query: b'pdat.matterlytics.com'
+ 600.5  13 | 2021-03-09T21:51:53+0000 [stdout#info] Result for b'pdat.matterlytics.com' is ['13.32.204.52', '13.32.204.68', '13.32.204.106', '13.32.204.40']
+ 600.5  13 | 2021-03-09T21:51:53+0000 [stdout#info] Result for b'pdat.matterlytics.com' is ['13.32.204.40', '13.32.204.106', '13.32.204.52', '13.32.204.68']
+ 600.5  24 | c : Accept TCP: 192.168.1.99:54026 -> 13.32.204.52:443.
+ 600.6  24 | c : SW'unknown':Mux#72: deleting (19 remain)
+ 600.6  24 | c : SW#12:192.168.1.99:44184: deleting (18 remain)
+ 600.6  24 | c : SW#12:192.168.1.99:44184: error was: uread: [Errno 104] Connection reset by peer
+ 600.6  24 | c : SW'unknown':Mux#15: deleting (17 remain)
+ 600.6  24 | c : SW#10:192.168.1.99:55000: deleting (16 remain)
+ 603.6 TEL | [55] Running: sudo -n echo -n
+ 603.6 TEL | [55] ran in 0.02 secs.
+ 609.4 TEL | (proxy checking local liveness)
+ 609.4  13 | 2021-03-09T21:52:02+0000 [Poll#info] Checkpoint
+ 629.7  24 | c : DNS request from ('127.0.0.1', 48597) to None: 48 bytes
+ 629.7  24 | c : DNS request from ('127.0.0.1', 48597) to None: 48 bytes
+ 629.7  13 | 2021-03-09T21:52:22+0000 [stdout#info] A query: b'messages.google.com'
+ 629.7  13 | 2021-03-09T21:52:22+0000 [stdout#info] AAAA query, sending back A instead: b'messages.google.com'
+ 629.7  13 | 2021-03-09T21:52:22+0000 [stdout#info] A query: b'messages.google.com'
+ 629.8  13 | 2021-03-09T21:52:22+0000 [stdout#info] Result for b'messages.google.com' is ['172.217.13.78']
+ 629.8  13 | 2021-03-09T21:52:22+0000 [stdout#info] Result for b'messages.google.com' is ['172.217.15.78']
+ 633.7 TEL | [56] Running: sudo -n echo -n
+ 633.7 TEL | [56] ran in 0.02 secs.
+ 639.4 TEL | (proxy checking local liveness)
+ 639.5  13 | 2021-03-09T21:52:32+0000 [Poll#info] Checkpoint
+ 663.7 TEL | [57] Running: sudo -n echo -n
+ 663.7 TEL | [57] ran in 0.02 secs.
+ 669.4 TEL | (proxy checking local liveness)
+ 669.5  13 | 2021-03-09T21:53:02+0000 [Poll#info] Checkpoint
+ 689.7  24 | c : DNS request from ('127.0.0.1', 48205) to None: 44 bytes
+ 689.7  24 | c : DNS request from ('127.0.0.1', 48205) to None: 44 bytes
+ 689.8  13 | 2021-03-09T21:53:22+0000 [stdout#info] A query: b'play.google.com'
+ 689.8  13 | 2021-03-09T21:53:22+0000 [stdout#info] AAAA query, sending back A instead: b'play.google.com'
+ 689.8  13 | 2021-03-09T21:53:22+0000 [stdout#info] A query: b'play.google.com'
+ 689.8  13 | 2021-03-09T21:53:22+0000 [stdout#info] Result for b'play.google.com' is ['172.217.13.238']
+ 689.8  13 | 2021-03-09T21:53:22+0000 [stdout#info] Result for b'play.google.com' is ['172.217.13.238']
+ 693.8 TEL | [58] Running: sudo -n echo -n
+ 693.8 TEL | [58] ran in 0.02 secs.
+ 699.4 TEL | (proxy checking local liveness)
+ 699.4  13 | 2021-03-09T21:53:32+0000 [Poll#info] Checkpoint
+ 723.8 TEL | [59] Running: sudo -n echo -n
+ 723.8 TEL | [59] ran in 0.02 secs.
+ 729.8 TEL | (proxy checking local liveness)
+ 730.0  13 | 2021-03-09T21:54:02+0000 [Poll#info] Checkpoint
+ 749.7  24 | c : DNS request from ('127.0.0.1', 41788) to None: 48 bytes
+ 749.7  24 | c : DNS request from ('127.0.0.1', 41788) to None: 48 bytes
+ 749.7  13 | 2021-03-09T21:54:22+0000 [stdout#info] A query: b'messages.google.com'
+ 749.7  13 | 2021-03-09T21:54:22+0000 [stdout#info] AAAA query, sending back A instead: b'messages.google.com'
+ 749.7  13 | 2021-03-09T21:54:22+0000 [stdout#info] A query: b'messages.google.com'
+ 749.7  13 | 2021-03-09T21:54:22+0000 [stdout#info] Result for b'messages.google.com' is ['172.217.13.78']
+ 749.7  13 | 2021-03-09T21:54:22+0000 [stdout#info] Result for b'messages.google.com' is ['172.217.7.206']
+ 753.9 TEL | [60] Running: sudo -n echo -n
+ 753.9 TEL | [60] ran in 0.02 secs.
+ 759.4 TEL | (proxy checking local liveness)
+ 759.4  13 | 2021-03-09T21:54:32+0000 [Poll#info] Checkpoint
+ 774.7  24 | c : DNS request from ('127.0.0.1', 46796) to None: 58 bytes
+ 774.7  24 | c : DNS request from ('127.0.0.1', 46796) to None: 58 bytes
+ 774.7  13 | 2021-03-09T21:54:47+0000 [stdout#info] A query: b'clientservices.googleapis.com'
+ 774.7  13 | 2021-03-09T21:54:47+0000 [stdout#info] AAAA query, sending back A instead: b'clientservices.googleapis.com'
+ 774.7  13 | 2021-03-09T21:54:47+0000 [stdout#info] A query: b'clientservices.googleapis.com'
+ 774.7  13 | 2021-03-09T21:54:47+0000 [stdout#info] Result for b'clientservices.googleapis.com' is ['172.217.12.227']
+ 774.8  13 | 2021-03-09T21:54:47+0000 [stdout#info] Result for b'clientservices.googleapis.com' is ['172.217.12.227']
+ 780.3  24 |  s: SW'unknown':Mux#84: deleting (9 remain)
+ 780.3  24 |  s: SW#17:35.202.114.240:443: deleting (8 remain)
+ 780.3  24 |  s: SW'unknown':Mux#96: deleting (7 remain)
+ 780.3  24 |  s: SW#8:3.230.108.196:443: deleting (6 remain)
+ 780.3  24 |  s: SW'unknown':Mux#87: deleting (5 remain)
+ 780.3  24 |  s: SW#11:34.224.186.196:443: deleting (4 remain)
+ 782.6  24 | c : DNS request from ('127.0.0.1', 40749) to None: 44 bytes
+ 782.6  24 | c : DNS request from ('127.0.0.1', 40749) to None: 44 bytes
+ 782.6  24 | c : SW#8:192.168.1.99:58422: deleting (15 remain)
+ 782.6  24 | c : SW'unknown':Mux#84: deleting (14 remain)
+ 782.6  24 | c : SW#13:192.168.1.99:49452: deleting (13 remain)
+ 782.6  24 | c : SW'unknown':Mux#87: deleting (12 remain)
+ 782.7  13 | 2021-03-09T21:54:55+0000 [stdout#info] A query: b'play.google.com'
+ 782.7  13 | 2021-03-09T21:54:55+0000 [stdout#info] AAAA query, sending back A instead: b'play.google.com'
+ 782.7  13 | 2021-03-09T21:54:55+0000 [stdout#info] A query: b'play.google.com'
+ 782.7  13 | 2021-03-09T21:54:55+0000 [stdout#info] Result for b'play.google.com' is ['172.217.13.238']
+ 782.7  13 | 2021-03-09T21:54:55+0000 [stdout#info] Result for b'play.google.com' is ['172.217.13.238']
+ 783.9 TEL | [61] Running: sudo -n echo -n
+ 783.9 TEL | [61] ran in 0.02 secs.
+ 789.5 TEL | (proxy checking local liveness)
+ 789.6  13 | 2021-03-09T21:55:02+0000 [Poll#info] Checkpoint
+ 809.6  24 | c : DNS request from ('127.0.0.1', 49308) to None: 60 bytes
+ 809.6  24 | c : DNS request from ('127.0.0.1', 49308) to None: 60 bytes
+ 809.7  13 | 2021-03-09T21:55:22+0000 [stdout#info] A query: b'accounts.development.atmimp.com'
+ 809.7  13 | 2021-03-09T21:55:22+0000 [stdout#info] AAAA query, sending back A instead: b'accounts.development.atmimp.com'
+ 809.7  13 | 2021-03-09T21:55:22+0000 [stdout#info] A query: b'accounts.development.atmimp.com'
+ 809.7  13 | 2021-03-09T21:55:22+0000 [stdout#info] Result for b'accounts.development.atmimp.com' is ['184.72.155.128', '34.224.186.196', '54.208.58.198']
+ 809.7  24 | c : Accept TCP: 192.168.1.99:47142 -> 184.72.155.128:443.
+ 809.7  13 | 2021-03-09T21:55:22+0000 [stdout#info] Result for b'accounts.development.atmimp.com' is ['54.208.58.198', '34.224.186.196', '184.72.155.128']
+ 814.0 TEL | [62] Running: sudo -n echo -n
+ 814.0 TEL | [62] ran in 0.02 secs.
+ 819.4 TEL | (proxy checking local liveness)
+ 819.4  13 | 2021-03-09T21:55:32+0000 [Poll#info] Checkpoint
+ 844.0 TEL | [63] Running: sudo -n echo -n
+ 844.0 TEL | [63] ran in 0.02 secs.
+ 845.2  24 | c : DNS request from ('127.0.0.1', 37749) to None: 46 bytes
+ 845.2  24 | c : DNS request from ('127.0.0.1', 37749) to None: 46 bytes
+ 845.2  13 | 2021-03-09T21:55:57+0000 [stdout#info] A query: b'gitlab.ngidev.com'
+ 845.2  13 | 2021-03-09T21:55:57+0000 [stdout#info] AAAA query, sending back A instead: b'gitlab.ngidev.com'
+ 845.2  13 | 2021-03-09T21:55:57+0000 [stdout#info] A query: b'gitlab.ngidev.com'
+ 845.3  13 | 2021-03-09T21:55:57+0000 [stdout#info] Result for b'gitlab.ngidev.com' is ['3.213.161.16', '3.230.108.196']
+ 845.3  13 | 2021-03-09T21:55:57+0000 [stdout#info] Result for b'gitlab.ngidev.com' is ['3.230.108.196', '3.213.161.16']
+ 845.3  24 | c : Accept TCP: 192.168.1.99:56856 -> 3.213.161.16:22.
+ 849.4 TEL | (proxy checking local liveness)
+ 849.4  13 | 2021-03-09T21:56:02+0000 [Poll#info] Checkpoint
+ 869.6  24 | c : DNS request from ('127.0.0.1', 42471) to None: 46 bytes
+ 869.6  24 | c : DNS request from ('127.0.0.1', 42471) to None: 46 bytes
+ 869.7  13 | 2021-03-09T21:56:22+0000 [stdout#info] A query: b'gitlab.ngidev.com'
+ 869.7  13 | 2021-03-09T21:56:22+0000 [stdout#info] AAAA query, sending back A instead: b'gitlab.ngidev.com'
+ 869.7  13 | 2021-03-09T21:56:22+0000 [stdout#info] A query: b'gitlab.ngidev.com'
+ 869.7  13 | 2021-03-09T21:56:22+0000 [stdout#info] Result for b'gitlab.ngidev.com' is ['3.230.108.196', '3.213.161.16']
+ 869.7  13 | 2021-03-09T21:56:22+0000 [stdout#info] Result for b'gitlab.ngidev.com' is ['3.230.108.196', '3.213.161.16']
+ 869.7  24 | c : Accept TCP: 192.168.1.99:48546 -> 3.230.108.196:443.
+ 869.7  24 | c : DNS request from ('127.0.0.1', 46266) to None: 48 bytes
+ 869.7  24 | c : DNS request from ('127.0.0.1', 46266) to None: 48 bytes
+ 869.7  24 | c : SW#10:192.168.1.99:56856: deleting (17 remain)
+ 869.7  24 | c : SW'unknown':Mux#115: deleting (16 remain)
+ 869.7  13 | 2021-03-09T21:56:22+0000 [stdout#info] A query: b'messages.google.com'
+ 869.7  13 | 2021-03-09T21:56:22+0000 [stdout#info] AAAA query, sending back A instead: b'messages.google.com'
+ 869.7  13 | 2021-03-09T21:56:22+0000 [stdout#info] A query: b'messages.google.com'
+ 869.7  13 | 2021-03-09T21:56:22+0000 [stdout#info] Result for b'messages.google.com' is ['172.217.164.142']
+ 869.8  13 | 2021-03-09T21:56:22+0000 [stdout#info] Result for b'messages.google.com' is ['172.217.13.78']
+ 874.1 TEL | [64] Running: sudo -n echo -n
+ 874.1 TEL | [64] ran in 0.02 secs.
+ 879.4 TEL | (proxy checking local liveness)
+ 879.4  13 | 2021-03-09T21:56:32+0000 [Poll#info] Checkpoint
+ 904.1 TEL | [65] Running: sudo -n echo -n
+ 904.1 TEL | [65] ran in 0.02 secs.
+ 909.4 TEL | (proxy checking local liveness)
+ 909.5  13 | 2021-03-09T21:57:02+0000 [Poll#info] Checkpoint
+ 934.2 TEL | [66] Running: sudo -n echo -n
+ 934.2 TEL | [66] ran in 0.02 secs.
+ 939.4 TEL | (proxy checking local liveness)
+ 939.5  13 | 2021-03-09T21:57:32+0000 [Poll#info] Checkpoint
+ 960.3  24 | c : DNS request from ('127.0.0.1', 38511) to None: 50 bytes
+ 960.3  24 | c : DNS request from ('127.0.0.1', 38511) to None: 50 bytes
+ 960.4  13 | 2021-03-09T21:57:53+0000 [stdout#info] A query: b'mattermost.ngidev.com'
+ 960.4  13 | 2021-03-09T21:57:53+0000 [stdout#info] AAAA query, sending back A instead: b'mattermost.ngidev.com'
+ 960.4  13 | 2021-03-09T21:57:53+0000 [stdout#info] A query: b'mattermost.ngidev.com'
+ 960.4  13 | 2021-03-09T21:57:53+0000 [stdout#info] Result for b'mattermost.ngidev.com' is ['34.193.250.21', '54.236.204.218']
+ 960.4  13 | 2021-03-09T21:57:53+0000 [stdout#info] Result for b'mattermost.ngidev.com' is ['54.236.204.218', '34.193.250.21']
+ 960.4  24 | c : Accept TCP: 192.168.1.99:44738 -> 34.193.250.21:443.
+ 964.2 TEL | [67] Running: sudo -n echo -n
+ 964.2 TEL | [67] ran in 0.01 secs.
+ 969.5 TEL | (proxy checking local liveness)
+ 969.6  13 | 2021-03-09T21:58:02+0000 [Poll#info] Checkpoint
+ 989.6  24 | c : DNS request from ('127.0.0.1', 48397) to None: 44 bytes
+ 989.6  24 | c : DNS request from ('127.0.0.1', 48397) to None: 44 bytes
+ 989.7  13 | 2021-03-09T21:58:22+0000 [stdout#info] A query: b'play.google.com'
+ 989.7  13 | 2021-03-09T21:58:22+0000 [stdout#info] AAAA query, sending back A instead: b'play.google.com'
+ 989.7  13 | 2021-03-09T21:58:22+0000 [stdout#info] A query: b'play.google.com'
+ 989.7  13 | 2021-03-09T21:58:22+0000 [stdout#info] Result for b'play.google.com' is ['142.250.73.238']
+ 989.7  24 |  s: SW'unknown':Mux#18: deleting (11 remain)
+ 989.7  24 |  s: SW#10:54.236.204.218:443: deleting (10 remain)
+ 989.7  24 |  s: SW#10:54.236.204.218:443: error was: uread: [Errno 104] Connection reset by peer
+ 989.7  13 | 2021-03-09T21:58:22+0000 [stdout#info] Result for b'play.google.com' is ['142.250.73.238']
+ 989.7  24 | c : DNS request from ('127.0.0.1', 41875) to None: 48 bytes
+ 989.7  24 | c : DNS request from ('127.0.0.1', 41875) to None: 48 bytes
+ 989.7  13 | 2021-03-09T21:58:22+0000 [stdout#info] A query: b'messages.google.com'
+ 989.7  13 | 2021-03-09T21:58:22+0000 [stdout#info] AAAA query, sending back A instead: b'messages.google.com'
+ 989.7  13 | 2021-03-09T21:58:22+0000 [stdout#info] A query: b'messages.google.com'
+ 989.7  13 | 2021-03-09T21:58:22+0000 [stdout#info] Result for b'messages.google.com' is ['142.250.73.206']
+ 989.7  13 | 2021-03-09T21:58:22+0000 [stdout#info] Result for b'messages.google.com' is ['172.217.164.142']
+ 989.8  24 | c : DNS request from ('127.0.0.1', 49990) to None: 39 bytes
+ 989.8  24 | c : DNS request from ('127.0.0.1', 49990) to None: 39 bytes
+ 989.8  13 | 2021-03-09T21:58:22+0000 [stdout#info] A query: b'google.com'
+ 989.8  13 | 2021-03-09T21:58:22+0000 [stdout#info] AAAA query, sending back A instead: b'google.com'
+ 989.8  13 | 2021-03-09T21:58:22+0000 [stdout#info] A query: b'google.com'
+ 989.9  13 | 2021-03-09T21:58:22+0000 [stdout#info] Result for b'google.com' is ['172.217.164.174']
+ 989.9  13 | 2021-03-09T21:58:22+0000 [stdout#info] Result for b'google.com' is ['172.217.8.14']
+ 994.3 TEL | [68] Running: sudo -n echo -n
+ 994.3 TEL | [68] ran in 0.02 secs.
+ 999.4 TEL | (proxy checking local liveness)
+ 999.4  13 | 2021-03-09T21:58:32+0000 [Poll#info] Checkpoint
+1020.9  24 | c : DNS request from ('127.0.0.1', 48568) to None: 39 bytes
+1020.9  24 | c : DNS request from ('127.0.0.1', 48568) to None: 39 bytes
+1021.0  13 | 2021-03-09T21:58:53+0000 [stdout#info] A query: b'github.com'
+1021.0  13 | 2021-03-09T21:58:53+0000 [stdout#info] AAAA query, sending back A instead: b'github.com'
+1021.0  13 | 2021-03-09T21:58:53+0000 [stdout#info] A query: b'github.com'
+1021.0  13 | 2021-03-09T21:58:53+0000 [stdout#info] Result for b'github.com' is ['140.82.113.3']
+1021.0  13 | 2021-03-09T21:58:53+0000 [stdout#info] Result for b'github.com' is ['140.82.113.3']
+1021.0  24 | c : Accept TCP: 192.168.1.99:49952 -> 140.82.113.3:443.
+1024.3 TEL | [69] Running: sudo -n echo -n
+1024.3 TEL | [69] ran in 0.02 secs.
+1029.4 TEL | (proxy checking local liveness)
+1029.4  13 | 2021-03-09T21:59:02+0000 [Poll#info] Checkpoint
+1049.7  24 | c : DNS request from ('127.0.0.1', 39207) to None: 44 bytes
+1049.7  24 | c : DNS request from ('127.0.0.1', 39207) to None: 44 bytes
+1049.7  13 | 2021-03-09T21:59:22+0000 [stdout#info] A query: b'play.google.com'
+1049.7  13 | 2021-03-09T21:59:22+0000 [stdout#info] AAAA query, sending back A instead: b'play.google.com'
+1049.7  13 | 2021-03-09T21:59:22+0000 [stdout#info] A query: b'play.google.com'
+1049.8  13 | 2021-03-09T21:59:22+0000 [stdout#info] Result for b'play.google.com' is ['142.250.73.238']
+1049.8  13 | 2021-03-09T21:59:22+0000 [stdout#info] Result for b'play.google.com' is ['172.217.15.78']
+1054.4 TEL | [70] Running: sudo -n echo -n
+1054.4 TEL | [70] ran in 0.02 secs.
+1059.4 TEL | (proxy checking local liveness)
+1059.4  13 | 2021-03-09T21:59:32+0000 [Poll#info] Checkpoint
+1080.3  24 |  s: SW#-1:140.82.113.3:443: deleting (11 remain)
+1080.3  24 |  s: SW'unknown':Mux#132: deleting (10 remain)
+1080.3  24 |  s: SW'unknown':Mux#112: deleting (9 remain)
+1080.3  24 |  s: SW#12:184.72.155.128:443: deleting (8 remain)
+1084.4 TEL | [71] Running: sudo -n echo -n
+1084.4 TEL | [71] ran in 0.02 secs.
+1089.4 TEL | (proxy checking local liveness)
+1089.5  13 | 2021-03-09T22:00:02+0000 [Poll#info] Checkpoint
+1096.7  24 | c : DNS request from ('127.0.0.1', 42831) to None: 48 bytes
+1096.7  24 | c : DNS request from ('127.0.0.1', 42831) to None: 48 bytes
+1096.7  13 | 2021-03-09T22:00:09+0000 [stdout#info] A query: b'messages.google.com'
+1096.7  13 | 2021-03-09T22:00:09+0000 [stdout#info] AAAA query, sending back A instead: b'messages.google.com'
+1096.7  13 | 2021-03-09T22:00:09+0000 [stdout#info] A query: b'messages.google.com'
+1096.8  13 | 2021-03-09T22:00:09+0000 [stdout#info] Result for b'messages.google.com' is ['172.217.164.142']
+1096.8  13 | 2021-03-09T22:00:09+0000 [stdout#info] Result for b'messages.google.com' is ['172.217.164.142']
+1109.6  24 | c : DNS request from ('127.0.0.1', 39527) to None: 60 bytes
+1109.6  24 | c : DNS request from ('127.0.0.1', 39527) to None: 60 bytes
+1109.7  13 | 2021-03-09T22:00:22+0000 [stdout#info] A query: b'accounts.development.atmimp.com'
+1109.7  13 | 2021-03-09T22:00:22+0000 [stdout#info] AAAA query, sending back A instead: b'accounts.development.atmimp.com'
+1109.7  13 | 2021-03-09T22:00:22+0000 [stdout#info] A query: b'accounts.development.atmimp.com'
+1109.7  13 | 2021-03-09T22:00:22+0000 [stdout#info] Result for b'accounts.development.atmimp.com' is ['34.224.186.196', '184.72.155.128', '54.208.58.198']
+1109.7  24 |  s: SW'unknown':Mux#118: deleting (7 remain)
+1109.7  24 |  s: SW#11:3.230.108.196:443: deleting (6 remain)
+1109.7  24 | c : Accept TCP: 192.168.1.99:54298 -> 34.224.186.196:443.
+1109.7  13 | 2021-03-09T22:00:22+0000 [stdout#info] Result for b'accounts.development.atmimp.com' is ['54.208.58.198', '184.72.155.128', '34.224.186.196']
+1110.1  24 | c : DNS request from ('127.0.0.1', 41846) to None: 39 bytes
+1110.1  24 | c : DNS request from ('127.0.0.1', 41846) to None: 39 bytes
+1110.1  13 | 2021-03-09T22:00:22+0000 [stdout#info] A query: b'google.com'
+1110.1  13 | 2021-03-09T22:00:22+0000 [stdout#info] AAAA query, sending back A instead: b'google.com'
+1110.1  13 | 2021-03-09T22:00:22+0000 [stdout#info] A query: b'google.com'
+1110.1  13 | 2021-03-09T22:00:22+0000 [stdout#info] Result for b'google.com' is ['142.250.73.238']
+1110.1  13 | 2021-03-09T22:00:22+0000 [stdout#info] Result for b'google.com' is ['142.250.73.238']
+1110.2  24 | c : SW#13:192.168.1.99:49952: deleting (21 remain)
+1110.2  24 | c : SW'unknown':Mux#132: deleting (20 remain)
+1110.2  24 | c : SW#12:192.168.1.99:48546: deleting (19 remain)
+1110.2  24 | c : SW#12:192.168.1.99:48546: error was: uread: [Errno 104] Connection reset by peer
+1110.2  24 | c : SW'unknown':Mux#118: deleting (18 remain)
+1114.5 TEL | [72] Running: sudo -n echo -n
+1114.5 TEL | [72] ran in 0.02 secs.
+1117.3  24 | c : DNS request from ('127.0.0.1', 57523) to None: 46 bytes
+1117.3  24 | c : DNS request from ('127.0.0.1', 57523) to None: 46 bytes
+1117.3  13 | 2021-03-09T22:00:29+0000 [stdout#info] A query: b'gitlab.ngidev.com'
+1117.3  13 | 2021-03-09T22:00:29+0000 [stdout#info] AAAA query, sending back A instead: b'gitlab.ngidev.com'
+1117.3  13 | 2021-03-09T22:00:29+0000 [stdout#info] A query: b'gitlab.ngidev.com'
+1117.4  13 | 2021-03-09T22:00:30+0000 [stdout#info] Result for b'gitlab.ngidev.com' is ['3.213.161.16', '3.230.108.196']
+1117.4  13 | 2021-03-09T22:00:30+0000 [stdout#info] Result for b'gitlab.ngidev.com' is ['3.213.161.16', '3.230.108.196']
+1117.4  24 | c : Accept TCP: 192.168.1.99:59064 -> 3.213.161.16:22.
+1118.4  24 | c : SW#8:192.168.1.99:47142: deleting (19 remain)
+1118.4  24 | c : SW'unknown':Mux#112: deleting (18 remain)
+1119.4 TEL | (proxy checking local liveness)
+1119.5  13 | 2021-03-09T22:00:32+0000 [Poll#info] Checkpoint
+1144.5 TEL | [73] Running: sudo -n echo -n
+1144.5 TEL | [73] ran in 0.02 secs.
+1149.5 TEL | (proxy checking local liveness)
+1149.6  13 | 2021-03-09T22:01:02+0000 [Poll#info] Checkpoint
+1156.6  24 | c : DNS request from ('127.0.0.1', 33270) to None: 44 bytes
+1156.6  24 | c : DNS request from ('127.0.0.1', 33270) to None: 44 bytes
+1156.6  13 | 2021-03-09T22:01:09+0000 [stdout#info] A query: b'play.google.com'
+1156.6  13 | 2021-03-09T22:01:09+0000 [stdout#info] AAAA query, sending back A instead: b'play.google.com'
+1156.6  13 | 2021-03-09T22:01:09+0000 [stdout#info] A query: b'play.google.com'
+1156.7  13 | 2021-03-09T22:01:09+0000 [stdout#info] Result for b'play.google.com' is ['172.217.164.174']
+1156.7  13 | 2021-03-09T22:01:09+0000 [stdout#info] Result for b'play.google.com' is ['172.217.164.174']
+1162.7  24 | c : DNS request from ('127.0.0.1', 44161) to None: 48 bytes
+1162.7  24 | c : DNS request from ('127.0.0.1', 44161) to None: 48 bytes
+1162.7  24 | c : DNS request from ('127.0.0.1', 45691) to None: 43 bytes
+1162.7  24 | c : DNS request from ('127.0.0.1', 45691) to None: 43 bytes
+1162.8  13 | 2021-03-09T22:01:15+0000 [stdout#info] A query: b'accounts.google.com'
+1162.8  13 | 2021-03-09T22:01:15+0000 [stdout#info] AAAA query, sending back A instead: b'accounts.google.com'
+1162.8  13 | 2021-03-09T22:01:15+0000 [stdout#info] A query: b'accounts.google.com'
+1162.8  13 | 2021-03-09T22:01:15+0000 [stdout#info] A query: b'www.google.com'
+1162.8  13 | 2021-03-09T22:01:15+0000 [stdout#info] AAAA query, sending back A instead: b'www.google.com'
+1162.8  13 | 2021-03-09T22:01:15+0000 [stdout#info] A query: b'www.google.com'
+1162.8  13 | 2021-03-09T22:01:15+0000 [stdout#info] Result for b'accounts.google.com' is ['172.217.13.77']
+1162.8  13 | 2021-03-09T22:01:15+0000 [stdout#info] Result for b'accounts.google.com' is ['172.217.13.77']
+1162.8  13 | 2021-03-09T22:01:15+0000 [stdout#info] Result for b'www.google.com' is ['172.217.15.100']
+1162.8  13 | 2021-03-09T22:01:15+0000 [stdout#info] Result for b'www.google.com' is ['172.217.8.4']
+1162.9  24 | c : Accept TCP: 192.168.1.99:50828 -> 172.217.13.77:443.
+1162.9  24 |  s: SW'unknown':Mux#99: deleting (11 remain)
+1162.9  24 |  s: SW#9:13.32.204.52:443: deleting (10 remain)
+1162.9  24 |  s: SW'unknown':Mux#115: deleting (9 remain)
+1162.9  24 |  s: SW#8:3.213.161.16:22: deleting (8 remain)
+1162.9  24 |  s: SW'unknown':Mux#144: deleting (7 remain)
+1162.9  24 |  s: SW#18:3.213.161.16:22: deleting (6 remain)
+1163.0  24 | c : DNS request from ('127.0.0.1', 59641) to None: 47 bytes
+1163.0  24 | c : DNS request from ('127.0.0.1', 59641) to None: 47 bytes
+1163.1  13 | 2021-03-09T22:01:15+0000 [stdout#info] A query: b'www.googleapis.com'
+1163.1  13 | 2021-03-09T22:01:15+0000 [stdout#info] AAAA query, sending back A instead: b'www.googleapis.com'
+1163.1  13 | 2021-03-09T22:01:15+0000 [stdout#info] A query: b'www.googleapis.com'
+1163.1  24 | c : DNS request from ('127.0.0.1', 49506) to None: 46 bytes
+1163.1  24 | c : DNS request from ('127.0.0.1', 49506) to None: 46 bytes
+1163.1  13 | 2021-03-09T22:01:15+0000 [stdout#info] Result for b'www.googleapis.com' is ['142.250.73.202', '172.217.13.234', '172.217.13.74', '172.217.15.74', '142.250.73.234', '172.217.164.170', '172.217.15.106', '172.217.12.234', '172.217.8.10', '172.217.5.234', '172.217.9.202', '172.217.164.138']
+1163.1  13 | 2021-03-09T22:01:15+0000 [stdout#info] Result for b'www.googleapis.com' is ['142.250.73.202', '172.217.7.202', '172.217.13.234', '142.250.73.234', '172.217.13.74', '172.217.15.74', '172.217.5.234', '172.217.15.106', '172.217.164.170', '172.217.9.202']
+1163.1  13 | 2021-03-09T22:01:15+0000 [stdout#info] A query: b'fonts.gstatic.com'
+1163.1  13 | 2021-03-09T22:01:15+0000 [stdout#info] Result for b'fonts.gstatic.com' is ['172.217.164.131']
+1163.1  13 | 2021-03-09T22:01:15+0000 [stdout#info] AAAA query, sending back A instead: b'fonts.gstatic.com'
+1163.1  13 | 2021-03-09T22:01:15+0000 [stdout#info] A query: b'fonts.gstatic.com'
+1163.1  13 | 2021-03-09T22:01:15+0000 [stdout#info] Result for b'fonts.gstatic.com' is ['172.217.164.131']
+1163.2  24 | c : DNS request from ('127.0.0.1', 59207) to None: 41 bytes
+1163.2  24 | c : DNS request from ('127.0.0.1', 59207) to None: 41 bytes
+1163.3  24 | c : DNS request from ('127.0.0.1', 47322) to None: 48 bytes
+1163.3  24 | c : DNS request from ('127.0.0.1', 47322) to None: 48 bytes
+1163.3  24 | c : DNS request from ('127.0.0.1', 35217) to None: 63 bytes
+1163.3  24 | c : DNS request from ('127.0.0.1', 35217) to None: 63 bytes
+1163.3  13 | 2021-03-09T22:01:15+0000 [stdout#info] A query: b'lastpass.com'
+1163.3  13 | 2021-03-09T22:01:15+0000 [stdout#info] AAAA query, sending back A instead: b'lastpass.com'
+1163.3  13 | 2021-03-09T22:01:15+0000 [stdout#info] A query: b'lastpass.com'
+1163.3  13 | 2021-03-09T22:01:15+0000 [stdout#info] Result for b'lastpass.com' is ['184.84.77.202']
+1163.3  13 | 2021-03-09T22:01:15+0000 [stdout#info] A query: b'clients4.google.com'
+1163.3  13 | 2021-03-09T22:01:15+0000 [stdout#info] Result for b'lastpass.com' is ['184.84.77.202']
+1163.3  24 | c : Accept TCP: 192.168.1.99:36548 -> 184.84.77.202:443.
+1163.3  13 | 2021-03-09T22:01:15+0000 [stdout#info] AAAA query, sending back A instead: b'clients4.google.com'
+1163.3  13 | 2021-03-09T22:01:15+0000 [stdout#info] A query: b'clients4.google.com'
+1163.3  13 | 2021-03-09T22:01:15+0000 [stdout#info] Result for b'clients4.google.com' is ['172.217.164.142']
+1163.3  13 | 2021-03-09T22:01:15+0000 [stdout#info] A query: b'oauthaccountmanager.googleapis.com'
+1163.3  13 | 2021-03-09T22:01:15+0000 [stdout#info] AAAA query, sending back A instead: b'oauthaccountmanager.googleapis.com'
+1163.3  13 | 2021-03-09T22:01:15+0000 [stdout#info] A query: b'oauthaccountmanager.googleapis.com'
+1163.3  13 | 2021-03-09T22:01:15+0000 [stdout#info] Result for b'clients4.google.com' is ['172.217.164.142']
+1163.3  13 | 2021-03-09T22:01:15+0000 [stdout#info] Result for b'oauthaccountmanager.googleapis.com' is ['172.217.164.170']
+1163.3  13 | 2021-03-09T22:01:16+0000 [stdout#info] Result for b'oauthaccountmanager.googleapis.com' is ['172.217.164.170']
+1163.7  24 | c : Accept TCP: 192.168.1.99:43066 -> 192.168.1.111:8008.
+1163.7  24 | c : Accept TCP: 192.168.1.99:39640 -> 192.168.1.84:8060.
+1164.1  24 | c : DNS request from ('127.0.0.1', 47908) to None: 60 bytes
+1164.1  24 | c : DNS request from ('127.0.0.1', 47908) to None: 60 bytes
+1164.2  13 | 2021-03-09T22:01:16+0000 [stdout#info] A query: b'lp-push-server-707.lastpass.com'
+1164.2  13 | 2021-03-09T22:01:16+0000 [stdout#info] AAAA query, sending back A instead: b'lp-push-server-707.lastpass.com'
+1164.2  13 | 2021-03-09T22:01:16+0000 [stdout#info] A query: b'lp-push-server-707.lastpass.com'
+1164.2  13 | 2021-03-09T22:01:16+0000 [stdout#info] Result for b'lp-push-server-707.lastpass.com' is ['64.225.7.155']
+1164.2  13 | 2021-03-09T22:01:16+0000 [stdout#info] Result for b'lp-push-server-707.lastpass.com' is ['64.225.7.155']
+1164.2  24 | c : Accept TCP: 192.168.1.99:48354 -> 64.225.7.155:443.
+1164.7  24 | c : Accept TCP: 192.168.1.99:38064 -> 192.168.1.69:56790.
+1169.6  24 | c : DNS request from ('127.0.0.1', 57320) to None: 46 bytes
+1169.6  24 | c : DNS request from ('127.0.0.1', 57320) to None: 46 bytes
+1169.7  13 | 2021-03-09T22:01:22+0000 [stdout#info] A query: b'gitlab.ngidev.com'
+1169.7  13 | 2021-03-09T22:01:22+0000 [stdout#info] AAAA query, sending back A instead: b'gitlab.ngidev.com'
+1169.7  13 | 2021-03-09T22:01:22+0000 [stdout#info] A query: b'gitlab.ngidev.com'
+1169.7  13 | 2021-03-09T22:01:22+0000 [stdout#info] Result for b'gitlab.ngidev.com' is ['3.230.108.196', '3.213.161.16']
+1169.7  13 | 2021-03-09T22:01:22+0000 [stdout#info] Result for b'gitlab.ngidev.com' is ['3.213.161.16', '3.230.108.196']
+1169.7  24 | c : Accept TCP: 192.168.1.99:51000 -> 3.230.108.196:443.
+1169.7  24 |  s: SW'unknown':Mux#167: deleting (17 remain)
+1169.7  24 |  s: SW#10:64.225.7.155:443: deleting (16 remain)
+1169.7  24 |  s: SW'unknown':Mux#162: deleting (15 remain)
+1169.7  24 |  s: SW#19:184.84.77.202:443: deleting (14 remain)
+1169.7  24 |  s: SW'unknown':Mux#151: deleting (13 remain)
+1169.7  24 |  s: SW#16:172.217.13.77:443: deleting (12 remain)
+1174.6 TEL | [74] Running: sudo -n echo -n
+1174.6 TEL | [74] ran in 0.02 secs.
+1179.4 TEL | (proxy checking local liveness)
+1179.5  13 | 2021-03-09T22:01:32+0000 [Poll#info] Checkpoint
+1184.1  24 | c : DNS request from ('127.0.0.1', 55449) to None: 48 bytes
+1184.1  24 | c : DNS request from ('127.0.0.1', 55449) to None: 48 bytes
+1184.2  13 | 2021-03-09T22:01:36+0000 [stdout#info] A query: b'clients4.google.com'
+1184.2  13 | 2021-03-09T22:01:36+0000 [stdout#info] AAAA query, sending back A instead: b'clients4.google.com'
+1184.2  13 | 2021-03-09T22:01:36+0000 [stdout#info] A query: b'clients4.google.com'
+1184.2  13 | 2021-03-09T22:01:36+0000 [stdout#info] Result for b'clients4.google.com' is ['172.217.164.142']
+1184.2  13 | 2021-03-09T22:01:36+0000 [stdout#info] Result for b'clients4.google.com' is ['172.217.13.78']
